@@ -1,47 +1,17 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { colors } from "../theme";
+import { CheckCircle2 } from "lucide-react";
 
-export function CheckItem({
-  children,
-  colorIcon = colors.teal,
-  colorText = colors.textMuted,
-}) {
+export function CheckItem({ children, iconClass = "text-teal" }) {
   return (
-    <Box
-      component="li"
-      sx={{
-        display: "flex",
-        gap: "14px",
-        alignItems: "flex-start",
-        py: "11px",
-        borderBottom: `1px solid ${colors.border}`,
-        "&:last-child": { borderBottom: "none" },
-        fontSize: "0.95rem",
-        color: colorText,
-        lineHeight: 1.55,
-        listStyle: "none",
-      }}
-    >
-      <CheckCircleIcon
-        sx={{
-          flexShrink: 0,
-          mt: "2px",
-          width: 22,
-          height: 22,
-          color: colorIcon,
-        }}
+    <li className="flex items-start gap-3.5 border-b border-border py-3 text-[0.95rem] leading-[1.55] last:border-b-0">
+      <CheckCircle2
+        aria-hidden="true"
+        className={`mt-[2px] h-[22px] w-[22px] shrink-0 ${iconClass}`}
       />
-      <Box>{children}</Box>
-    </Box>
+      <div>{children}</div>
+    </li>
   );
 }
 
-export default function CheckList({ children }) {
-  return (
-    <Box component="ul" sx={{ listStyle: "none", p: 0, m: 0 }}>
-      {children}
-    </Box>
-  );
+export default function CheckList({ children, className = "" }) {
+  return <ul className={`m-0 list-none p-0 ${className}`}>{children}</ul>;
 }

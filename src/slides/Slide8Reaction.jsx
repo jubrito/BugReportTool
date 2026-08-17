@@ -1,42 +1,70 @@
-import React from "react";
-import { Box } from "@mui/material";
 import SlideShell from "../components/SlideShell";
 import SlideHeading from "../components/SlideHeading";
 import Eyebrow from "../components/Eyebrow";
 import Quote from "../components/Quote";
-import Pill from "../components/Pill";
-import { colors } from "../theme";
+
+const GREEN = "var(--color-green)";
+
+const NAMED_QUOTES = [
+  {
+    by: "Engineering Manager",
+    text: "This is awesome!!! This is one of those features where you become shocked that we didn't think of it sooner. I love the blocking/impacting buttons!!! Very clear!!",
+    className: "basis-[63%]",
+  },
+  {
+    by: "Technical Lead",
+    text: "This is awesome! Love all the dialogue as well.",
+    className: "basis-[37%]",
+  },
+];
+
+const ANON_QUOTES = [
+  {
+    text: "Congrats on the Bug Report Tool improvements rollout! 🎉",
+    className: "basis-[31.5%]",
+  },
+  {
+    text: "Shoutout to everyone involved in iterating on the bug report form",
+    className: "basis-[31.5%]",
+  },
+  {
+    text: "Congrats for brainstorming better approach for bug report mirroring in dragon",
+    className: "basis-[38%]",
+  },
+];
 
 export default function Slide8Reaction() {
   return (
-    <SlideShell>
+    <SlideShell ariaLabel="Team reaction">
       <Eyebrow>Recognition</Eyebrow>
-      <SlideHeading accentColor={colors.green}>
+      <SlideHeading accent="green">
         The team's <em>reaction</em>
       </SlideHeading>
 
-      <Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
-        <Quote by="Engineering Manager" width="63%" color={colors.green}>
-          "This is awesome!!! This is one of those features where you become
-          shocked that we didn't think of it sooner. I love the
-          blocking/impacting buttons!!! Very clear!!"
-        </Quote>
-        <Quote by="Technical Lead" width="37%" color={colors.green}>
-          "This is awesome! Love all the dialogue as well."
-        </Quote>
-      </Box>
-      <Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
-        <Quote by="Anonymous (during retrospective)" width="31.5%">
-          "Congrats on the Bug Report Tool improvements rollout! 🎉
-        </Quote>
-        <Quote by="Anonymous (during retrospective)" width="31.5%">
-          "Shoutout to everyone involved in iterating on the bug report form"
-        </Quote>
-        <Quote by="Anonymous (during retrospective)" width="38%">
-          "Congrats for brainstorming better approach for bug report mirroring
-          in dragon
-        </Quote>
-      </Box>
+      <div className="flex flex-row gap-4">
+        {NAMED_QUOTES.map((q) => (
+          <Quote
+            key={q.by}
+            by={q.by}
+            className={q.className}
+            accentColor={GREEN}
+          >
+            "{q.text}"
+          </Quote>
+        ))}
+      </div>
+
+      <div className="flex flex-row gap-4">
+        {ANON_QUOTES.map((q) => (
+          <Quote
+            key={q.text}
+            by="Anonymous (during retrospective)"
+            className={q.className}
+          >
+            "{q.text}"
+          </Quote>
+        ))}
+      </div>
     </SlideShell>
   );
 }

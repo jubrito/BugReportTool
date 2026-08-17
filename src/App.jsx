@@ -1,6 +1,3 @@
-import React from "react";
-import { ThemeProvider, CssBaseline } from "@mui/material";
-import { theme } from "./theme";
 import Slide1Title from "./slides/Slide1Title";
 import Slide2Problem from "./slides/Slide2Problem";
 import Slide3Solution from "./slides/Slide3Solution";
@@ -12,22 +9,34 @@ import Slide8Reaction from "./slides/Slide8Reaction";
 import Slide9Team from "./slides/Slide9Team";
 import Slide10Closing from "./slides/Slide10Closing";
 
+const SLIDES = [
+  Slide1Title,
+  Slide2Problem,
+  Slide3Solution,
+  Slide4Impact,
+  Slide5Green,
+  Slide6Dragon,
+  Slide7Improvements,
+  Slide8Reaction,
+  Slide9Team,
+  Slide10Closing,
+];
+
 export default function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <main>
-        <Slide1Title />
-        <Slide2Problem />
-        <Slide3Solution />
-        <Slide4Impact />
-        <Slide5Green />
-        <Slide6Dragon />
-        <Slide7Improvements />
-        <Slide8Reaction />
-        <Slide9Team />
-        <Slide10Closing />
+    <>
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
+      <main
+        id="main"
+        aria-label="Bug Report Intake 2.5 presentation"
+        aria-roledescription="carousel"
+      >
+        {SLIDES.map((Slide, i) => (
+          <Slide key={i} />
+        ))}
       </main>
-    </ThemeProvider>
+    </>
   );
 }

@@ -1,19 +1,15 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import CancelIcon from "@mui/icons-material/Cancel";
+import { CheckCircle2, XCircle } from "lucide-react";
 import SlideShell from "../components/SlideShell";
 import SlideHeading from "../components/SlideHeading";
 import Eyebrow from "../components/Eyebrow";
-import { colors } from "../theme";
 
-const withoutItems = [
+const WITHOUT_ITEMS = [
   "AI doesn't have enough information to start to prioritize bug",
   "AI needs to ask follow-up questions to get more context",
   "Tokens are spent unnecessarily → wasting money and impacting the environment negatively",
 ];
 
-const withItems = [
+const WITH_ITEMS = [
   "AI has the info needed to determine the severity and scope",
   "Efficient triage: with context AI can find the root cause faster",
   "Fewer follow-up questions and resources wasted",
@@ -21,200 +17,103 @@ const withItems = [
 
 function IntakeList({ items, Icon, iconColor }) {
   return (
-    <Box component="ul" sx={{ listStyle: "none", p: 0, m: 0 }}>
-      {items.map((item, i) => (
-        <Box
-          key={i}
-          component="li"
-          sx={{
-            display: "flex",
-            gap: "10px",
-            alignItems: "flex-start",
-            py: "8px",
-            fontSize: "0.9rem",
-            color: colors.text,
-            lineHeight: 1.55,
-          }}
+    <ul className="m-0 list-none p-0">
+      {items.map((item) => (
+        <li
+          key={item}
+          className="flex items-start gap-2.5 py-2 text-[0.9rem] leading-[1.55] text-text"
         >
           <Icon
-            sx={{
-              flexShrink: 0,
-              mt: "2px",
-              width: 20,
-              height: 20,
-              color: iconColor,
-            }}
+            aria-hidden="true"
+            className={`mt-[2px] h-5 w-5 shrink-0 ${iconColor}`}
           />
-          <Box>{item}</Box>
-        </Box>
+          <span>{item}</span>
+        </li>
       ))}
-    </Box>
+    </ul>
+  );
+}
+
+function IntakePanel({ tone, title, input, italicInput, items, Icon, iconColor }) {
+  const borderClass =
+    tone === "without" ? "border-pink-soft" : "border-teal-soft";
+  const titleClass = tone === "without" ? "text-pink" : "text-teal";
+  return (
+    <article
+      aria-labelledby={`intake-${tone}`}
+      className={`rounded-xl border-[1.5px] bg-black p-5 ${borderClass}`}
+    >
+      <h3
+        id={`intake-${tone}`}
+        className={`mb-3 text-[0.9rem] font-bold uppercase tracking-[0.1em] ${titleClass}`}
+      >
+        {title}
+      </h3>
+      <p className="mb-3.5 font-mono text-[0.84rem] leading-[1.6] text-[#d1d2d3]">
+        Input:{" "}
+        {italicInput ? <span className="italic">{italicInput}</span> : `"${input}"`}
+      </p>
+      <IntakeList items={items} Icon={Icon} iconColor={iconColor} />
+    </article>
   );
 }
 
 export default function Slide6Dragon() {
   return (
-    <SlideShell>
+    <SlideShell ariaLabel="AI-assisted triage">
       <Eyebrow>Maximizing the team AI-Assisted Triage</Eyebrow>
-      <SlideHeading accentColor={colors.teal}>
+      <SlideHeading accent="teal">
         Better input.
         <br />
         <em>More efficient AI triage.</em>
       </SlideHeading>
 
-      <Box sx={{ width: "100%" }}>
-        <Typography
-          sx={{
-            fontSize: "1.3rem",
-            fontWeight: "bold",
-            lineHeight: 1.7,
-            mb: 1,
-          }}
-        >
+      <div className="w-full">
+        <p className="mb-1 text-[1.3rem] font-bold leading-[1.7]">
           The team's new AI triage tool can only be as good as the data it
           receives.
-        </Typography>
-        <Typography
-          sx={{
-            fontSize: "1rem",
-            lineHeight: 1.7,
-            mb: 2,
-          }}
-        >
+        </p>
+        <p className="mb-4 text-base leading-[1.7]">
           Agents succeed or fail depending on the quality of the context you
           give it. A single vague sentence gives it nothing to reason about, it
           can only reflect the vagueness back.
-        </Typography>
-        <Typography
-          sx={{
-            fontSize: "1.2rem",
-            fontWeight: 700,
-            letterSpacing: "0.12em",
-            color: colors.teal,
-            mb: "8px",
-          }}
-        >
-          Supporting an industry shift
-        </Typography>
+        </p>
 
-        <Box
-          sx={{
-            borderLeft: `3px solid ${colors.teal}`,
-            pl: "16px",
-            mb: "28px",
-          }}
-        >
-          <Typography
-            sx={{
-              fontSize: "1rem",
-              fontStyle: "italic",
-              lineHeight: 1.55,
-              color: colors.text,
-              mb: "6px",
-            }}
-          >
+        <p className="mb-2 text-[1.2rem] font-bold uppercase tracking-[0.12em] text-teal">
+          Supporting an industry shift
+        </p>
+
+        <figure className="mb-7 border-l-[3px] border-teal pl-4">
+          <blockquote className="mb-1.5 text-base italic leading-[1.55] text-text">
             <strong>"Context engineering over prompt engineering</strong> – the
             art of providing all the context for the task to be plausibly
             solvable by the LLM."
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: "0.85rem",
-              color: colors.textMuted,
-            }}
-          >
+          </blockquote>
+          <figcaption className="text-[0.85rem] text-text-muted">
             — Tobi Lütke, Shopify co-founder & CEO (June 2025). Endorsed by
             Andrej Karpathy, co-founder of OpenAI.
-          </Typography>
-        </Box>
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-            gap: "20px",
-            alignItems: "stretch",
-          }}
-        >
-          <Box
-            sx={{
-              background: "#000",
-              border: "1.5px solid rgba(242,97,122,0.4)",
-              borderRadius: "12px",
-              p: "20px",
-            }}
-          >
-            <Typography
-              sx={{
-                fontSize: "0.9rem",
-                fontWeight: 700,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                color: colors.pink,
-                mb: "12px",
-              }}
-            >
-              Without structured intake
-            </Typography>
-            <Typography
-              sx={{
-                fontFamily: "monospace",
-                fontSize: "0.84rem",
-                color: "#d1d2d3",
-                lineHeight: 1.6,
-                mb: "14px",
-              }}
-            >
-              Input: "Can't duplicate the class"
-            </Typography>
-            <IntakeList
-              items={withoutItems}
-              Icon={CancelIcon}
-              iconColor={colors.pink}
-            />
-          </Box>
+          </figcaption>
+        </figure>
 
-          <Box
-            sx={{
-              background: "#000",
-              border: "1.5px solid rgba(71,161,173,0.4)",
-              borderRadius: "12px",
-              p: "20px",
-            }}
-          >
-            <Typography
-              sx={{
-                fontSize: "0.9rem",
-                fontWeight: 700,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                color: colors.teal,
-                mb: "12px",
-              }}
-            >
-              With structured intake
-            </Typography>
-            <Typography
-              sx={{
-                fontFamily: "monospace",
-                fontSize: "0.84rem",
-                color: "#d1d2d3",
-                lineHeight: 1.6,
-                mb: "14px",
-              }}
-            >
-              Input:{" "}
-              <span style={{ fontStyle: "italic" }}>
-                &lt;scope X, it's blocking Y, recurring, stakeholder Z etc&gt;
-              </span>
-            </Typography>
-            <IntakeList
-              items={withItems}
-              Icon={CheckCircleIcon}
-              iconColor={colors.teal}
-            />
-          </Box>
-        </Box>
-      </Box>
+        <div className="grid items-stretch gap-5 md:grid-cols-2">
+          <IntakePanel
+            tone="without"
+            title="Without structured intake"
+            input="Can't duplicate the class"
+            items={WITHOUT_ITEMS}
+            Icon={XCircle}
+            iconColor="text-pink"
+          />
+          <IntakePanel
+            tone="with"
+            title="With structured intake"
+            italicInput="<scope X, it's blocking Y, recurring, stakeholder Z etc>"
+            items={WITH_ITEMS}
+            Icon={CheckCircle2}
+            iconColor="text-teal"
+          />
+        </div>
+      </div>
     </SlideShell>
   );
 }

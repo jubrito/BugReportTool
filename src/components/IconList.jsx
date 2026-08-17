@@ -1,64 +1,22 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
-import { colors } from "../theme";
-
-export function IconListItem({ icon, children, muted = false }) {
+export function IconListItem({ icon, children }) {
   return (
-    <Box
-      component="li"
-      sx={{
-        display: "flex",
-        gap: "12px",
-        alignItems: "flex-start",
-        py: "9px",
-        borderBottom: `1px solid ${colors.border}`,
-        "&:last-child": { borderBottom: "none" },
-        fontSize: "0.95rem",
-        color: muted ? colors.textMuted : colors.text,
-        lineHeight: 1.55,
-        listStyle: "none",
-      }}
-    >
-      <Box
-        sx={{
-          flexShrink: 0,
-          mt: "3px",
-          width: 18,
-          height: 18,
-          display: "flex",
-        }}
-      >
+    <li className="flex items-start gap-3 border-b border-border py-2 text-[0.95rem] leading-[1.55] last:border-b-0">
+      <span aria-hidden="true" className="mt-[3px] flex h-[18px] w-[18px] shrink-0">
         {icon}
-      </Box>
-      <Box>{children}</Box>
-    </Box>
+      </span>
+      <div>{children}</div>
+    </li>
   );
 }
 
 export function SubText({ children }) {
   return (
-    <Typography
-      component="span"
-      sx={{
-        display: "block",
-        fontSize: "0.8rem",
-        color: colors.textMuted,
-        mt: "3px",
-        lineHeight: 1.45,
-        fontSize: "0.9rem",
-      }}
-    >
+    <span className="mt-[3px] block text-[0.9rem] leading-[1.45] text-text-muted">
       {children}
-    </Typography>
+    </span>
   );
 }
 
-export default function IconList({ children, muted = false }) {
-  return (
-    <Box component="ul" sx={{ listStyle: "none", p: 0, m: 0 }}>
-      {React.Children.map(children, (child) =>
-        child ? React.cloneElement(child, { muted }) : null,
-      )}
-    </Box>
-  );
+export default function IconList({ children, className = "" }) {
+  return <ul className={`m-0 list-none p-0 ${className}`}>{children}</ul>;
 }

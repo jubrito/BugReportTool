@@ -1,48 +1,48 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
-import { colors } from "../theme";
+const ROLE_COLOR = {
+  teal: "text-teal",
+  pink: "text-pink",
+  purple: "text-lilac-light",
+  amber: "text-amber",
+  green: "text-green",
+};
 
-const roleColors = {
-  teal: colors.teal,
-  pink: colors.pink,
-  purple: "#9b82c4",
-  amber: colors.amber,
-  green: colors.green,
+const MARKER_COLOR = {
+  teal: "marker:text-teal",
+  pink: "marker:text-pink",
+  purple: "marker:text-lilac-light",
+  amber: "marker:text-amber",
+  green: "marker:text-green",
 };
 
 export default function PersonCard({ name, role, accent = "teal", children }) {
+  const roleColor = ROLE_COLOR[accent] ?? ROLE_COLOR.teal;
   return (
-    <Box
-      sx={{
-        background: colors.cardBg,
-        border: `1.5px solid ${colors.border}`,
-        borderRadius: "16px",
-        p: "22px 20px",
-        width: "100%",
-      }}
-    >
-      <Typography
-        sx={{ fontSize: "1.05rem", fontWeight: 700, color: "#fff", mb: "4px" }}
-      >
-        {name}
-      </Typography>
-      <Typography
-        sx={{
-          fontSize: "0.78rem",
-          fontWeight: 600,
-          textTransform: "uppercase",
-          letterSpacing: "0.08em",
-          mb: "12px",
-          color: roleColors[accent],
-        }}
+    <article className="w-full rounded-2xl border-[1.5px] border-border bg-surface p-5">
+      <h3 className="mb-1 text-[1.05rem] font-bold text-white">{name}</h3>
+      <p
+        className={`mb-3 text-[0.78rem] font-semibold uppercase tracking-[0.08em] ${roleColor}`}
       >
         {role}
-      </Typography>
-      <Typography
-        sx={{ fontSize: "0.88rem", color: colors.textMuted, lineHeight: 1.65 }}
-      >
+      </p>
+      <div className="text-[0.88rem] leading-[1.65] text-text-muted">
         {children}
-      </Typography>
-    </Box>
+      </div>
+    </article>
+  );
+}
+
+export function PersonBullets({ items, accent = "teal", boldFirst = true }) {
+  const markerColor = MARKER_COLOR[accent] ?? MARKER_COLOR.teal;
+  return (
+    <ul className={`m-0 list-disc pl-6 ${markerColor}`}>
+      {items.map((item, i) => (
+        <li
+          key={item}
+          className={`pl-1 ${boldFirst && i === 0 ? "font-bold" : "font-normal"}`}
+        >
+          {item}
+        </li>
+      ))}
+    </ul>
   );
 }

@@ -1,169 +1,104 @@
-import React from "react";
-import { Box, Divider, Typography } from "@mui/material";
-import { colors } from "../theme";
-import SouthIcon from "@mui/icons-material/South";
+import { ArrowDown } from "lucide-react";
+
+const REPLY_ROWS = [
+  [
+    "Blocked users, teams or operations",
+    "Live class in progress. Affects all producers on the 6am shift",
+  ],
+  ["Known workarounds", "Yes. Re-importing the class plan"],
+  ["Stakeholders", "Studio, Media Streaming"],
+  ["Recurrence", "Is happening repeatedly"],
+  [
+    "Additional details",
+    "Started after the deploy. Steps to reproduce: class library → SCB.",
+  ],
+];
 
 function BotHeader() {
   return (
-    <Box sx={{ display: "flex", alignItems: "center", gap: "8px", mb: "12px" }}>
-      <Box
-        component="img"
+    <div className="mb-3 flex items-center gap-2">
+      <img
         src="/leto.png"
-        alt="Team Slack Bot"
-        sx={{ width: 28, height: 28, borderRadius: "6px", flexShrink: 0 }}
+        alt=""
+        aria-hidden="true"
+        className="h-7 w-7 shrink-0 rounded-md"
+        loading="lazy"
+        decoding="async"
       />
-      <Box
-        component="span"
-        sx={{ fontWeight: 700, color: "#fff", fontSize: "0.9rem" }}
-      >
-        Team Slack bot
-      </Box>
-      <Box
-        component="span"
-        sx={{ fontSize: "0.72rem", color: "#9b9da0", fontWeight: 400 }}
+      <span className="text-[0.9rem] font-bold text-white">Team Slack bot</span>
+      <time
+        dateTime="11:32"
+        className="text-[0.72rem] font-normal text-[#9b9da0]"
       >
         11:32 AM
-      </Box>
-    </Box>
+      </time>
+    </div>
+  );
+}
+
+function Card({ children }) {
+  return (
+    <div className="h-full rounded-2xl border-[1.5px] border-[#3c3f44] bg-[#192023] p-6 font-[Lato,'Segoe_UI',sans-serif] text-[0.88rem] leading-[1.75]">
+      {children}
+    </div>
   );
 }
 
 export default function SlackMock() {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "14px",
-        height: "100%",
-        minHeight: "100%",
-      }}
-    >
-      <Box
-        sx={{
-          background: "#192023",
-          border: "1.5px solid #3c3f44",
-          borderRadius: "14px",
-          p: "22px 26px",
-          fontSize: "0.88rem",
-          lineHeight: 1.75,
-          fontFamily: "'Lato', 'Segoe UI', sans-serif",
-          height: "100%",
-        }}
-      >
+    <div className="flex h-full min-h-full flex-col gap-3.5">
+      <Card>
         <BotHeader />
-        <Box sx={{ color: "#d1d2d3" }}>
-          <Box
-            component="span"
-            sx={{
-              fontWeight: 700,
-              color: colors.green,
-              textDecoration: "underline",
-              cursor: "pointer",
-            }}
+        <div className="text-[#d1d2d3]">
+          <a
+            href="#"
+            className="font-bold text-green underline"
+            onClick={(e) => e.preventDefault()}
           >
             Team Link
-          </Box>
+          </a>
           <br />
-          <Box
-            component="span"
-            sx={{
-              fontWeight: 700,
-              color: colors.green,
-              textDecoration: "underline",
-              cursor: "pointer",
-            }}
+          <a
+            href="#"
+            className="font-bold text-green underline"
+            onClick={(e) => e.preventDefault()}
           >
             Datadog RUM Link
-          </Box>
+          </a>
           <br />
-          <Box component="span" sx={{ fontWeight: 700, color: "#fff" }}>
-            Environment:
-          </Box>{" "}
-          PRODUCTION
+          <span className="font-bold text-white">Environment:</span> PRODUCTION
           <br />
-          <Box component="span" sx={{ fontWeight: 700, color: "#fff" }}>
-            Path:
-          </Box>{" "}
-          /programs
+          <span className="font-bold text-white">Path:</span> /programs
           <br />
-          <Box component="span" sx={{ fontWeight: 700, color: "#fff" }}>
-            User:
-          </Box>{" "}
+          <span className="font-bold text-white">User:</span>{" "}
           reporter@onepeloton.com
           <br />
-          <Box component="span" sx={{ fontWeight: 700, color: "#fff" }}>
+          <span className="font-bold text-white">
             Current vs. expected behavior:
-          </Box>{" "}
+          </span>{" "}
           The Segment Control Board should show all segments, but the list is
           empty.
           <br />
-          <Box component="span" sx={{ fontWeight: 700, color: "#fff" }}>
-            Business Hours On Call:
-          </Box>{" "}
+          <span className="font-bold text-white">Business Hours On Call:</span>{" "}
           @Juliana
-        </Box>
-      </Box>
-      <Typography
-        sx={{
-          fontSize: "0.72rem",
-          color: "#9b9da0",
-          textTransform: "uppercase",
-          letterSpacing: "0.07em",
-          fontWeight: 700,
-          textAlign: "center",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "4px",
-        }}
-      >
-        <SouthIcon sx={{ fontSize: "13px" }} /> 1 reply
-      </Typography>
-      <Box
-        sx={{
-          background: "#192023",
-          border: "1.5px solid #3c3f44",
-          borderRadius: "14px",
-          p: "22px 26px",
-          fontSize: "0.88rem",
-          lineHeight: 1.75,
-          fontFamily: "'Lato', 'Segoe UI', sans-serif",
-          height: "100%",
-        }}
-      >
+        </div>
+      </Card>
+
+      <p className="flex items-center justify-center gap-1 text-center text-[0.72rem] font-bold uppercase tracking-[0.07em] text-[#9b9da0]">
+        <ArrowDown aria-hidden="true" className="h-3 w-3" /> 1 reply
+      </p>
+
+      <Card>
         <BotHeader />
-        <Box sx={{ color: "#c8c9ca" }}>
-          {[
-            [
-              "Blocked users, teams or operations",
-              "Live class in progress. Affects all producers on the 6am shift",
-            ],
-            ["Known workarounds", "Yes. Re-importing the class plan"],
-            ["Stakeholders", "Studio, Media Streaming"],
-            ["Recurrence", "Is happening repeatedly"],
-            [
-              "Additional details",
-              "Started after the deploy. Steps to reproduce: class library → SCB.",
-            ],
-          ].map(([label, value], i) => (
-            <Box key={i} sx={{ mt: i === 0 ? 0 : "10px" }}>
-              <Box
-                component="span"
-                sx={{ fontWeight: 700, color: "#ececed", display: "block" }}
-              >
-                {label}
-              </Box>
-              <Box
-                component="span"
-                sx={{ display: "block", color: "#c0c0c0", mb: "2px" }}
-              >
-                {value}
-              </Box>
-            </Box>
+        <dl className="text-[#c8c9ca]">
+          {REPLY_ROWS.map(([label, value], i) => (
+            <div key={label} className={i === 0 ? "" : "mt-2.5"}>
+              <dt className="block font-bold text-[#ececed]">{label}</dt>
+              <dd className="mb-0.5 block text-[#c0c0c0]">{value}</dd>
+            </div>
           ))}
-        </Box>
-      </Box>
-    </Box>
+        </dl>
+      </Card>
+    </div>
   );
 }

@@ -1,62 +1,39 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
-import { colors } from "../theme";
-
-const accentColors = {
-  teal: colors.teal,
-  green: colors.green,
-  amber: colors.amber,
-  purple: colors.purple,
-  pink: colors.pink,
+const ACCENT_BORDER = {
+  teal: "border-b-teal",
+  green: "border-b-green",
+  amber: "border-b-amber",
+  purple: "border-b-purple",
+  pink: "border-b-pink",
 };
 
 export default function ImpactCard({
   accent = "teal",
   icon,
   heading,
+  headingId,
   children,
+  className = "",
 }) {
+  const accentBorder = ACCENT_BORDER[accent] ?? ACCENT_BORDER.teal;
   return (
-    <Box
-      sx={{
-        borderRadius: "16px",
-        p: "26px",
-        background: colors.cardBg,
-        border: `1.5px solid ${colors.border}`,
-        borderBottom: `3px solid ${accentColors[accent]}`,
-      }}
+    <article
+      aria-labelledby={headingId}
+      className={`rounded-2xl border-[1.5px] border-border bg-surface p-6 border-b-[3px] ${accentBorder} ${className}`}
     >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          gap: 1,
-        }}
-      >
+      <div className="flex items-center gap-2">
         {icon && (
-          <Typography
-            component="span"
-            sx={{
-              mb: "12px",
-
-              "& svg": { width: 28, height: 28 },
-            }}
-          >
+          <span aria-hidden="true" className="mb-3 inline-flex [&_svg]:h-7 [&_svg]:w-7">
             {icon}
-          </Typography>
+          </span>
         )}
-        <Typography
-          component="span"
-          sx={{ fontSize: "1.05rem", fontWeight: 700, color: "#fff" }}
+        <h3
+          id={headingId}
+          className="text-[1.05rem] font-bold text-white"
         >
           {heading}
-        </Typography>
-      </Box>
-      <Typography
-        sx={{ fontSize: "0.9rem", color: colors.textMuted, lineHeight: 1.65 }}
-      >
-        {children}
-      </Typography>
-    </Box>
+        </h3>
+      </div>
+      <p className="text-[0.9rem] leading-[1.65] text-text-muted">{children}</p>
+    </article>
   );
 }

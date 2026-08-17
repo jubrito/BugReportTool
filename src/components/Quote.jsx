@@ -1,41 +1,19 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
-import { colors } from "../theme";
-
-export default function Quote({ by, children, width, color }) {
+export default function Quote({ by, children, className = "", accentColor }) {
+  const accent = accentColor ?? "var(--color-text)";
   return (
-    <Box
-      sx={{
-        background: "rgba(0,0,0,0.3)",
-        borderLeft: `5px solid ${color || colors.text}`,
-        borderRadius: "12px",
-        p: "22px 26px",
-        mb: "18px",
-        width: width || "100%",
-      }}
+    <figure
+      style={{ borderLeftColor: accent }}
+      className={`mb-4 rounded-xl border-l-[5px] bg-black/30 p-6 ${className}`}
     >
-      <Typography
-        component="blockquote"
-        sx={{
-          fontSize: "1.05rem",
-          fontStyle: "italic",
-          color: colors.textMuted,
-          lineHeight: 1.65,
-          mb: "10px",
-        }}
-      >
+      <blockquote className="mb-2.5 text-[1.05rem] italic leading-[1.65] text-text-muted">
         {children}
-      </Typography>
-      <Typography
-        sx={{
-          fontSize: "0.8rem",
-          fontWeight: 700,
-          color: color || colors.text,
-          letterSpacing: "0.04em",
-        }}
+      </blockquote>
+      <figcaption
+        style={{ color: accent }}
+        className="text-[0.8rem] font-bold tracking-[0.04em]"
       >
-        {by}
-      </Typography>
-    </Box>
+        — {by}
+      </figcaption>
+    </figure>
   );
 }

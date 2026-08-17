@@ -1,52 +1,38 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
 import SlideShell from "../components/SlideShell";
 import SlideHeading from "../components/SlideHeading";
 import Pill from "../components/Pill";
-import { colors } from "../theme";
 
-const pills = [
-  { label: "On-call triage", dot: colors.green },
-  { label: "Error handling", dot: colors.pink },
-  { label: "AI-powered triage", dot: colors.lilac },
-  { label: "Accessibility", dot: colors.amber },
+const PILLS = [
+  { label: "On-call triage", dot: "var(--color-green)" },
+  { label: "Error handling", dot: "var(--color-pink)" },
+  { label: "AI-powered triage", dot: "var(--color-lilac)" },
+  { label: "Accessibility", dot: "var(--color-amber)" },
 ];
 
 export default function Slide10Closing() {
   return (
-    <SlideShell center>
-      <SlideHeading accentColor={colors.teal}>
+    <SlideShell center ariaLabel="Closing">
+      <SlideHeading accent="teal">
         Richer input. Less friction.
         <br />
         Faster fixes. Better results.
         <br />
-        <em>
-          More efficient triage <br />
-        </em>
-        <span style={{ color: colors.lightTeal, fontStyle: "italic" }}>
-          by humans and AIs
-        </span>
+        <em>More efficient triage</em>
+        <br />
+        <span className="italic text-teal-soft">by humans and AIs</span>
       </SlideHeading>
 
-      <Box
-        sx={{
-          display: "flex",
-          gap: "10px",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          mb: "32px",
-        }}
-      >
-        {pills.map((p) => (
-          <Pill key={p.label} dotColor={p.dot}>
-            {p.label}
-          </Pill>
+      <ul className="mb-8 flex flex-wrap justify-center gap-2.5 list-none p-0 m-0">
+        {PILLS.map((p) => (
+          <li key={p.label}>
+            <Pill dotColor={p.dot}>{p.label}</Pill>
+          </li>
         ))}
-      </Box>
+      </ul>
 
-      <Typography sx={{ fontSize: "0.85rem", color: colors.textMuted }}>
+      <p className="text-[0.85rem] text-text-muted">
         Juliana Witzke · Fabio Pinto · Paulo Calixto
-      </Typography>
+      </p>
     </SlideShell>
   );
 }

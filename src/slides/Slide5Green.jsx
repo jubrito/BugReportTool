@@ -1,43 +1,41 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
-import ShowChartIcon from "@mui/icons-material/ShowChart";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import LoopIcon from "@mui/icons-material/Loop";
-import ArticleIcon from "@mui/icons-material/Article";
+import { TrendingUp, Clock, Loader, FileText } from "lucide-react";
 import SlideShell from "../components/SlideShell";
 import SlideHeading from "../components/SlideHeading";
 import Eyebrow from "../components/Eyebrow";
 import ImpactCard from "../components/ImpactCard";
-import Quote from "../components/Quote";
-import { colors } from "../theme";
 
-const cards = [
+const CARDS = [
   {
+    id: "mttr",
     accent: "green",
-    icon: <ShowChartIcon sx={{ color: colors.green }} />,
+    icon: <TrendingUp className="text-green" />,
     heading: "Shorter Mean Time to Repair",
     body: "Faster triage → faster fix → shorter window",
     description:
       "where broken state drives user retry traffic and wasted compute.",
   },
   {
+    id: "context",
     accent: "teal",
-    icon: <AccessTimeIcon sx={{ color: colors.teal }} />,
+    icon: <Clock className="text-teal" />,
     heading: "Less context-switching",
-    body: "Engineers stay in investigation mode faster ",
-    body: "instead of stopping to chase context. Human attention is an energy cost too.",
+    body: "Engineers stay in investigation mode faster",
+    description:
+      "instead of stopping to chase context. Human attention is an energy cost too.",
   },
   {
+    id: "messages",
     accent: "amber",
-    icon: <LoopIcon sx={{ color: colors.amber }} />,
+    icon: <Loader className="text-amber" />,
     heading: "Fewer messages",
     body: "Most friction elimination.",
     description:
       "Each saved follow-up round is a push notification and an interrupt on both sides.",
   },
   {
+    id: "storage",
     accent: "purple",
-    icon: <ArticleIcon sx={{ color: "#9b82c4" }} />,
+    icon: <FileText className="text-lilac-light" />,
     heading: "Leaner thread storage",
     body: "One structured reply instead of long threads",
     description:
@@ -47,42 +45,29 @@ const cards = [
 
 export default function Slide5Green() {
   return (
-    <SlideShell>
+    <SlideShell ariaLabel="Operational impact">
       <Eyebrow>Operational impact</Eyebrow>
-      <SlideHeading accentColor={colors.green}>
+      <SlideHeading accent="green">
         The <em>fastest path to resolution</em> <br />
         is having the right context from the start
       </SlideHeading>
 
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: { xs: "1fr", md: "1fr" },
-          gap: "44px",
-          alignItems: "start",
-        }}
-      >
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr 1fr",
-            gap: "18px",
-          }}
-        >
-          {cards.map((c) => (
+      <div className="grid grid-cols-1 gap-11 items-start md:grid-cols-1">
+        <div className="grid grid-cols-4 gap-[18px]">
+          {CARDS.map((c) => (
             <ImpactCard
-              key={c.heading}
+              key={c.id}
               accent={c.accent}
               icon={c.icon}
               heading={c.heading}
-              description={c.description}
+              headingId={`s5-${c.id}`}
             >
-              <Typography component="span"></Typography>
-              {c.body}
+              <span className="font-bold text-text">{c.body}</span>{" "}
+              {c.description}
             </ImpactCard>
           ))}
-        </Box>
-      </Box>
+        </div>
+      </div>
     </SlideShell>
   );
 }

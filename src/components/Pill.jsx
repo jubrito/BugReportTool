@@ -1,38 +1,31 @@
-import React from "react";
-import { Box } from "@mui/material";
-import { colors } from "../theme";
-
-export default function Pill({ dotColor, borderColor, textColor, children }) {
+export default function Pill({
+  icon,
+  dotColor,
+  borderColor,
+  textColor,
+  children,
+}) {
+  const style = {
+    borderColor: borderColor || dotColor,
+    color: textColor || dotColor,
+  };
   return (
-    <Box
-      component="span"
-      sx={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: "8px",
-        background: "rgba(0,0,0,0.3)",
-        border: `1.5px solid ${borderColor || dotColor}`,
-        borderRadius: "999px",
-        px: "18px",
-        py: "8px",
-        fontSize: "0.85rem",
-        fontWeight: 600,
-        color: textColor || dotColor,
-      }}
+    <span
+      style={style}
+      className="inline-flex items-center gap-2 rounded-full border-[1.5px] bg-black/30 px-4 py-2 text-[0.85rem] font-semibold"
     >
-      {dotColor && (
-        <Box
-          component="span"
-          sx={{
-            width: 8,
-            height: 8,
-            borderRadius: "50%",
-            background: dotColor,
-            flexShrink: 0,
-          }}
+      {icon ? (
+        <span aria-hidden="true" className="inline-flex">
+          {icon}
+        </span>
+      ) : dotColor ? (
+        <span
+          aria-hidden="true"
+          className="h-2 w-2 shrink-0 rounded-full"
+          style={{ background: dotColor }}
         />
-      )}
+      ) : null}
       {children}
-    </Box>
+    </span>
   );
 }

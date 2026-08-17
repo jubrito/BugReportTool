@@ -1,43 +1,41 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
-import ComputerIcon from "@mui/icons-material/Computer";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import AccessibilityNewIcon from "@mui/icons-material/AccessibilityNew";
-import AltRouteIcon from "@mui/icons-material/AltRoute";
+import { Monitor, CheckSquare, Accessibility, GitBranch } from "lucide-react";
 import SlideShell from "../components/SlideShell";
 import SlideHeading from "../components/SlideHeading";
 import Eyebrow from "../components/Eyebrow";
 import ImpactCard from "../components/ImpactCard";
-import { colors } from "../theme";
 
-const cards = [
+const CARDS = [
   {
+    id: "thread",
     accent: "teal",
-    icon: <ComputerIcon sx={{ color: colors.teal }} />,
+    icon: <Monitor className="text-teal" />,
     heading: "Thread replies — not noise",
     body: "The original slack stays clean",
     description:
       "– Structured details post as a thread reply: detail is one click away. Only answered questions are included.",
   },
   {
+    id: "loading",
     accent: "pink",
-    icon: <CheckBoxIcon sx={{ color: colors.pink }} />,
+    icon: <CheckSquare className="text-pink" />,
     heading: "Loading state — No accidental double-submits",
     body: "Dialog locks while submitting",
     description:
       "— loading indicator on the button and modal can't be dismissed mid-flight. No duplicate Slack messages.",
   },
   {
+    id: "a11y",
     accent: "green",
-    icon: <AccessibilityNewIcon sx={{ color: colors.green }} />,
+    icon: <Accessibility className="text-green" />,
     heading: "Accessible by design",
     body: "Form accessible for everyone",
     description:
       "– full support to keyboard-navigation while providing all meaningful information to screen readers.",
   },
   {
+    id: "forward",
     accent: "amber",
-    icon: <AltRouteIcon sx={{ color: colors.amber }} />,
+    icon: <GitBranch className="text-amber" />,
     heading: "Forward reports to AI bot channel to enable automated triage",
     body: "Supports AI-powered triage",
     description:
@@ -47,33 +45,28 @@ const cards = [
 
 export default function Slide7Improvements() {
   return (
-    <SlideShell>
+    <SlideShell ariaLabel="Additional improvements">
       <Eyebrow>Additional Improvements</Eyebrow>
-      <SlideHeading accentColor={colors.teal}>
+      <SlideHeading accent="teal">
         Other small details that
         <br />
         make a <em>big difference</em>
       </SlideHeading>
 
-      <Box
-        sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "18px" }}
-      >
-        {cards.map((c) => (
+      <div className="grid grid-cols-2 gap-[18px]">
+        {CARDS.map((c) => (
           <ImpactCard
-            key={c.heading}
+            key={c.id}
             accent={c.accent}
             icon={c.icon}
             heading={c.heading}
+            headingId={`s7-${c.id}`}
           >
-            <Typography component="span" sx={{ fontWeight: "bold" }}>
-              {c.body}
-            </Typography>
-            <Typography component="span" sx={{ ml: 1 }}>
-              {c.description}
-            </Typography>
+            <span className="font-bold">{c.body}</span>
+            <span className="ml-1">{c.description}</span>
           </ImpactCard>
         ))}
-      </Box>
+      </div>
     </SlideShell>
   );
 }

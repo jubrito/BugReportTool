@@ -1,32 +1,85 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0a1a20;
+  --color-bg-card: #0f2229;
+  --color-surface: rgba(0, 61, 79, 0.45);
+  --color-surface-dark: rgba(10, 8, 8, 0.3);
+  --color-text: #edf1f3;
+  --color-text-muted: #8cb8c2;
+  --color-border: rgba(237, 241, 243, 0.12);
+
+  --color-pink: #f2617a;
+  --color-pink-soft: rgba(242, 97, 122, 0.45);
+  --color-pink-softer: rgba(242, 97, 122, 0.1);
+
+  --color-amber: #cc850a;
+  --color-amber-soft: rgba(204, 133, 10, 0.45);
+  --color-amber-softer: rgba(204, 133, 10, 0.1);
+
+  --color-green: #6b9e78;
+  --color-green-soft: rgba(107, 158, 120, 0.45);
+  --color-green-softer: rgba(107, 158, 120, 0.1);
+
+  --color-teal: #47a1ad;
+  --color-teal-soft: rgba(71, 161, 173, 0.45);
+  --color-teal-softer: rgba(71, 161, 173, 0.1);
+
+  --color-purple: #634f7d;
+  --color-purple-soft: rgba(99, 79, 125, 0.45);
+  --color-purple-softer: rgba(99, 79, 125, 0.1);
+  --color-lilac: #9164cb;
+  --color-lilac-light: #9b82c4;
+
+  --font-sans: "Inter", system-ui, sans-serif;
 }
 
-:root {
-  --bg: #0a1a20;
-  --bg-card: #0f2229;
-  --pink: #f2617a;
-  --amber: #cc850a;
-  --green: #6b9e78;
-  --teal: #47a1ad;
-  --purple: #634f7d;
-  --text: #edf1f3;
-  --text-muted: #8cb8c2;
-  --border: rgba(237, 241, 243, 0.12);
-  --card-bg: rgba(0, 61, 79, 0.45);
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 18px;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-teal);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
-html {
-  font-size: 18px;
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  padding: 0.75rem 1rem;
+  background: var(--color-bg-card);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  z-index: 100;
 }
-
-body {
-  font-family: "Inter", system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.55;
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
 }
