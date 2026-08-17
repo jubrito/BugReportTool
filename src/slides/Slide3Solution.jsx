@@ -84,7 +84,7 @@ export default function Slide3Solution() {
                 → No friction for quick reports, but the right prompts are
                 impossible to miss.
               </p>
-              <p>
+              <p className="mt-2">
                 → Users know what info is most useful to provide if they want a
                 faster resolution.
               </p>
