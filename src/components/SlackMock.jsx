@@ -18,7 +18,7 @@ function BotHeader() {
   return (
     <div className="mb-3 flex items-center gap-2">
       <img
-        src="/leto.png"
+        src={`${import.meta.env.BASE_URL}leto.png`}
         alt=""
         aria-hidden="true"
         width={28}
