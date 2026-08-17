@@ -107,7 +107,7 @@ export default function Slide2Problem() {
       </Reveal>
 
       <div className="mt-1 grid gap-5 grid-cols-1 md:grid-cols-[1fr_1.3fr]">
-        <Reveal step={2} className="flex">
+        <Reveal step={2} className="h-full">
           <BACard
             tone="before"
             label='Incomplete "user reports" are common'
@@ -131,7 +131,7 @@ export default function Slide2Problem() {
           </BACard>
         </Reveal>
 
-        <Reveal step={3}>
+        <Reveal step={3} className="h-full">
           <BACard
             tone="before"
             label="Important context is often not shared"

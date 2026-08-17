@@ -37,7 +37,7 @@ export default function BACard({
   return (
     <article
       aria-labelledby={labelId}
-      className={`rounded-2xl border-[1.5px] p-7 ${t.bg} ${t.border} ${className}`}
+      className={`h-full rounded-2xl border-[1.5px] p-7 ${t.bg} ${t.border} ${className}`}
     >
       {label && (
         <h3

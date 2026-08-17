@@ -24,7 +24,7 @@ const TEAM = [
     contributions: [
       "Helped to make user experience smoother while maximizing issue context retrieval",
       "Introduced the form buttons layout",
-      "Reviewedb code to speed up feature delivery",
+      "Reviewed code to speed up feature delivery",
     ],
   },
   {

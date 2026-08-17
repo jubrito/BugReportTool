@@ -10,7 +10,7 @@ const CARDS = [
     id: "mttr",
     accent: "green",
     icon: <TrendingUp className="text-green" />,
-    heading: "Shorter Mean Time to Repair (SMTR)",
+    heading: "Shorter Mean Time to Repair (MTTR)",
     body: "Faster triage → faster fix → shorter window",
     description:
       "where broken state drives user retry traffic and wasted compute.",

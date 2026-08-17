@@ -154,7 +154,7 @@ export default function Slide4Impact() {
       </Reveal>
 
       <div className="grid grid-cols-1 gap-20 md:grid-cols-2">
-        <Reveal step={2}>
+        <Reveal step={2} className="h-full">
         <BACard tone="beforeTinted" label="Before" labelId="s4-before">
           <IconList>
             {BEFORE_ITEMS.map((item) => (
@@ -165,7 +165,7 @@ export default function Slide4Impact() {
           </IconList>
         </BACard>
         </Reveal>
-        <Reveal step={3}>
+        <Reveal step={3} className="h-full">
         <BACard tone="afterTinted" label="After" labelId="s4-after">
           <IconList>
             {AFTER_ITEMS.map((item) => (

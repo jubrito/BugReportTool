@@ -18,7 +18,7 @@ export default function ImpactCard({
   return (
     <article
       aria-labelledby={headingId}
-      className={`rounded-2xl border-[1.5px] border-border bg-surface p-5 border-b-[3px] ${accentBorder} ${className} min-h-full h-full`}
+      className={`h-full rounded-2xl border-[1.5px] border-border bg-surface p-5 border-b-[3px] ${accentBorder} ${className}`}
     >
       <div className="flex items-start gap-2">
         {icon && (
