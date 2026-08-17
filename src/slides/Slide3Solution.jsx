@@ -8,7 +8,7 @@ import Reveal from "../presentation/Reveal";
 const CHECK_ITEMS = [
   {
     title: "Current vs. expected",
-    badge: "(required)",
+    badge: "required",
     body: "What the user is trying to accomplish vs what is happening instead",
   },
   {
@@ -46,7 +46,7 @@ export default function Slide3Solution() {
 
       <div className="grid items-start gap-11 md:grid-cols-[1.5fr_1fr]">
         <div>
-          <p className="mb-6 text-base leading-[1.7] text-text-muted">
+          <p className="mb-4 text-base leading-[1.7] text-text-muted">
             Structured questionnaire inside the Bug Report dialog to highlight
             which type of information helps the engineers on-call triage the
             bug.{" "}
@@ -76,16 +76,14 @@ export default function Slide3Solution() {
           </Reveal>
 
           <Reveal step={2}>
-            <aside className="mt-5 rounded-xl border-[1.5px] border-green-soft bg-green-softer p-6 text-[0.95rem] leading-[1.6] text-text">
+            <aside className="mt-2 rounded-xl border-[1.5px] border-green-soft bg-green-softer p-5 text-[0.95rem] leading-[1.6] text-text">
               <p className="mb-2 text-[1.2rem] font-bold text-green">
                 All fields optional except "current vs. expected"
               </p>
               <p>
                 → No friction for quick reports, but the right prompts are
-                impossible to miss
-              </p>
-              <p className="mt-2">
-                → <strong>Users know what info is most useful to provide if they want a faster resolution.</strong>
+                impossible to miss. Users know what info is most useful to
+                provide if they want a faster resolution.
               </p>
             </aside>
           </Reveal>

@@ -114,7 +114,7 @@ function StatsRow({ items }) {
   return (
     <div className="flex items-stretch gap-3">
       {items.map((s, i) => (
-        <div key={s.value} className="flex flex-1 items-stretch gap-3">
+        <div key={s.value} className="flex flex-1 items-stretch gap-3 w-full">
           <StatCard {...s} />
           {i < items.length - 1 && (
             <span
@@ -155,26 +155,26 @@ export default function Slide4Impact() {
 
       <div className="grid grid-cols-1 gap-20 md:grid-cols-2">
         <Reveal step={2} className="h-full">
-        <BACard tone="beforeTinted" label="Before" labelId="s4-before">
-          <IconList>
-            {BEFORE_ITEMS.map((item) => (
-              <IconListItem key={item} icon={<WarningIcon />}>
-                {item}
-              </IconListItem>
-            ))}
-          </IconList>
-        </BACard>
+          <BACard tone="beforeTinted" label="Before" labelId="s4-before">
+            <IconList>
+              {BEFORE_ITEMS.map((item) => (
+                <IconListItem key={item} icon={<WarningIcon />}>
+                  {item}
+                </IconListItem>
+              ))}
+            </IconList>
+          </BACard>
         </Reveal>
         <Reveal step={3} className="h-full">
-        <BACard tone="afterTinted" label="After" labelId="s4-after">
-          <IconList>
-            {AFTER_ITEMS.map((item) => (
-              <IconListItem key={item} icon={<CheckIcon />}>
-                {item}
-              </IconListItem>
-            ))}
-          </IconList>
-        </BACard>
+          <BACard tone="afterTinted" label="After" labelId="s4-after">
+            <IconList>
+              {AFTER_ITEMS.map((item) => (
+                <IconListItem key={item} icon={<CheckIcon />}>
+                  {item}
+                </IconListItem>
+              ))}
+            </IconList>
+          </BACard>
         </Reveal>
       </div>
     </SlideShell>
