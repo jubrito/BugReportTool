@@ -3,11 +3,10 @@ import { render, screen } from "@testing-library/react";
 import SlideShell from "./SlideShell";
 
 describe("SlideShell", () => {
-  it("renders a section with slide role description and provided label", () => {
+  it("renders a section landmark with the provided accessible name", () => {
     render(<SlideShell ariaLabel="Intro">content</SlideShell>);
     const section = screen.getByRole("region", { name: "Intro" });
     expect(section.tagName).toBe("SECTION");
-    expect(section).toHaveAttribute("aria-roledescription", "slide");
   });
 
   it("renders children", () => {

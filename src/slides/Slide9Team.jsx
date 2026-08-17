@@ -38,6 +38,7 @@ const TEAM = [
 ];
 
 const MUTED = "var(--color-text-muted)";
+const TEXT = "var(--color-text)";
 
 const SUMMARY_PILLS = [
   "+2955 lines added",
@@ -61,7 +62,10 @@ export default function Slide9Team() {
             role={person.role}
             accent={person.accent}
           >
-            <PersonBullets items={person.contributions} accent={person.accent} />
+            <PersonBullets
+              items={person.contributions}
+              accent={person.accent}
+            />
           </PersonCard>
         ))}
       </div>
@@ -69,7 +73,7 @@ export default function Slide9Team() {
       <ul className="mt-8 flex flex-wrap gap-2.5 list-none p-0 m-0">
         {SUMMARY_PILLS.map((label) => (
           <li key={label}>
-            <Pill dotColor={MUTED} borderColor={MUTED} textColor={MUTED}>
+            <Pill dotColor={TEXT} borderColor={TEXT} textColor={TEXT}>
               {label}
             </Pill>
           </li>

@@ -86,7 +86,7 @@ export default function Slide2Problem() {
         ))}
       </ol>
 
-      <div className="mt-1 grid gap-5 grid-cols-[1fr_1.3fr]">
+      <div className="mt-1 grid gap-5 grid-cols-1 md:grid-cols-[1fr_1.3fr]">
         <BACard tone="before" label='Incomplete "user reports" are common' labelId="ba-before-heading">
           <div className="rounded-xl bg-pink-soft p-6 py-8 font-mono text-[0.88rem] leading-[1.8] text-white">
             <span className="font-bold">User report:</span>

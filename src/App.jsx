@@ -30,8 +30,8 @@ export default function App() {
       </a>
       <main
         id="main"
+        tabIndex={-1}
         aria-label="Bug Report Intake 2.5 presentation"
-        aria-roledescription="carousel"
       >
         {SLIDES.map((Slide, i) => (
           <Slide key={i} />

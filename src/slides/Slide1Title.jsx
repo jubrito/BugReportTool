@@ -1,10 +1,4 @@
-import {
-  Clock,
-  FileText,
-  Bot,
-  Info,
-  User,
-} from "lucide-react";
+import { Clock, FileText, Bot, Info, User } from "lucide-react";
 import SlideShell from "../components/SlideShell";
 import SlideHeading from "../components/SlideHeading";
 import Eyebrow from "../components/Eyebrow";
@@ -55,20 +49,22 @@ export default function Slide1Title() {
           src="/bot.png"
           alt=""
           aria-hidden="true"
-          className="block h-auto w-[250px]"
-          loading="lazy"
+          width={200}
+          height={200}
+          className="block h-auto w-[200px]"
           decoding="async"
         />
 
-        <div>
+        <div className="text-left">
           <Eyebrow>On-Call Experience</Eyebrow>
           <SlideHeading as="h1" accent="teal">
-            Bug Report <br />
-            <em>Intake 2.5</em>
+            Bug Report Intake
+            <em className="ml-3">2.5</em>
           </SlideHeading>
-          <p className="max-w-[600px] text-[1.15rem] leading-[1.65]">
+          <p className="max-w-[650px] text-[1.15rem] leading-[1.65]">
             Structured bug report tool to speed-up on-call triage. Less
-            back-and-forth, better human and AI-assisted investigations.
+            back-and-forth,{" "}
+            <strong>better human and AI-assisted investigations.</strong>
           </p>
           <p className="mt-3.5 text-[1.15rem] italic text-text-muted">
             Juliana Witzke · Fabio Pinto · Paulo Calixto

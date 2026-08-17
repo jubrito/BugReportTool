@@ -21,6 +21,8 @@ function BotHeader() {
         src="/leto.png"
         alt=""
         aria-hidden="true"
+        width={28}
+        height={28}
         className="h-7 w-7 shrink-0 rounded-md"
         loading="lazy"
         decoding="async"
@@ -50,21 +52,11 @@ export default function SlackMock() {
       <Card>
         <BotHeader />
         <div className="text-[#d1d2d3]">
-          <a
-            href="#"
-            className="font-bold text-green underline"
-            onClick={(e) => e.preventDefault()}
-          >
-            Team Link
-          </a>
+          <span className="font-bold text-green underline">Team Link</span>
           <br />
-          <a
-            href="#"
-            className="font-bold text-green underline"
-            onClick={(e) => e.preventDefault()}
-          >
+          <span className="font-bold text-green underline">
             Datadog RUM Link
-          </a>
+          </span>
           <br />
           <span className="font-bold text-white">Environment:</span> PRODUCTION
           <br />

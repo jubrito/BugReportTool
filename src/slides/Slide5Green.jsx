@@ -52,21 +52,19 @@ export default function Slide5Green() {
         is having the right context from the start
       </SlideHeading>
 
-      <div className="grid grid-cols-1 gap-11 items-start md:grid-cols-1">
-        <div className="grid grid-cols-4 gap-[18px]">
-          {CARDS.map((c) => (
-            <ImpactCard
-              key={c.id}
-              accent={c.accent}
-              icon={c.icon}
-              heading={c.heading}
-              headingId={`s5-${c.id}`}
-            >
-              <span className="font-bold text-text">{c.body}</span>{" "}
-              {c.description}
-            </ImpactCard>
-          ))}
-        </div>
+      <div className="grid items-start gap-[18px] grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        {CARDS.map((c) => (
+          <ImpactCard
+            key={c.id}
+            accent={c.accent}
+            icon={c.icon}
+            heading={c.heading}
+            headingId={`s5-${c.id}`}
+          >
+            <span className="font-bold text-text">{c.body}</span>{" "}
+            {c.description}
+          </ImpactCard>
+        ))}
       </div>
     </SlideShell>
   );

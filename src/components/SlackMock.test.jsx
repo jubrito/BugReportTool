@@ -8,18 +8,11 @@ describe("SlackMock", () => {
     expect(screen.getAllByText("Team Slack bot")).toHaveLength(2);
   });
 
-  it("renders both team and datadog links as anchors", () => {
+  it("renders the mock link labels as non-interactive spans", () => {
     render(<SlackMock />);
-    expect(screen.getByRole("link", { name: "Team Link" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Datadog RUM Link" })).toBeInTheDocument();
-  });
-
-  it("prevents default on the mock link click", () => {
-    render(<SlackMock />);
-    const link = screen.getByRole("link", { name: "Team Link" });
-    const event = new MouseEvent("click", { bubbles: true, cancelable: true });
-    link.dispatchEvent(event);
-    expect(event.defaultPrevented).toBe(true);
+    expect(screen.getByText("Team Link").tagName).toBe("SPAN");
+    expect(screen.getByText("Datadog RUM Link").tagName).toBe("SPAN");
+    expect(screen.queryByRole("link")).toBeNull();
   });
 
   it("renders the reply rows as a definition list", () => {
