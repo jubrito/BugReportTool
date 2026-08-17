@@ -18,18 +18,18 @@ export default function ImpactCard({
   return (
     <article
       aria-labelledby={headingId}
-      className={`rounded-2xl border-[1.5px] border-border bg-surface p-6 border-b-[3px] ${accentBorder} ${className}`}
+      className={`rounded-2xl border-[1.5px] border-border bg-surface p-5 border-b-[3px] ${accentBorder} ${className} min-h-full h-full`}
     >
-      <div className="flex items-center gap-2">
+      <div className="flex items-start gap-2">
         {icon && (
-          <span aria-hidden="true" className="mb-3 inline-flex [&_svg]:h-7 [&_svg]:w-7">
+          <span
+            aria-hidden="true"
+            className="mb-3 inline-flex [&_svg]:h-6 [&_svg]:w-7"
+          >
             {icon}
           </span>
         )}
-        <h3
-          id={headingId}
-          className="text-[1.05rem] font-bold text-white"
-        >
+        <h3 id={headingId} className="text-[1.05rem] font-bold text-white">
           {heading}
         </h3>
       </div>

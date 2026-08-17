@@ -46,9 +46,20 @@ const INCOMPLETE_ITEMS = [
 
 function MinusIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      aria-hidden="true"
+    >
       <circle cx="9" cy="9" r="8" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M6 9h6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <path
+        d="M6 9h6"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
@@ -69,7 +80,10 @@ export default function Slide2Problem() {
           className="my-7 flex w-full flex-wrap items-center gap-2.5 list-none p-0"
         >
           {FLOW_STEPS.map((step, i) => (
-            <li key={step.label} className="flex flex-1 min-w-[120px] items-center gap-2.5">
+            <li
+              key={step.label}
+              className="flex flex-1 min-w-[120px] items-center gap-2.5"
+            >
               <div
                 className={`w-full whitespace-pre-line rounded-xl border-[1.5px] px-4 py-3.5 text-center text-[0.9rem] font-semibold ${
                   step.alert
@@ -80,7 +94,10 @@ export default function Slide2Problem() {
                 {step.label}
               </div>
               {i < FLOW_STEPS.length - 1 && (
-                <span aria-hidden="true" className="shrink-0 text-[1.3rem] text-text-muted">
+                <span
+                  aria-hidden="true"
+                  className="shrink-0 text-[1.3rem] text-text-muted"
+                >
                   →
                 </span>
               )}
@@ -90,40 +107,52 @@ export default function Slide2Problem() {
       </Reveal>
 
       <div className="mt-1 grid gap-5 grid-cols-1 md:grid-cols-[1fr_1.3fr]">
-        <Reveal step={2}>
-        <BACard tone="before" label='Incomplete "user reports" are common' labelId="ba-before-heading">
-          <div className="rounded-xl bg-pink-soft p-6 py-8 font-mono text-[0.88rem] leading-[1.8] text-white">
-            <span className="font-bold">User report:</span>
-            <br />
-            The timings are incorrect
-          </div>
-          <ul className="ml-6 mt-4 list-disc">
-            {INCOMPLETE_ITEMS.map((item) => (
-              <li key={item} className="pl-2">
-                {item}
+        <Reveal step={2} className="flex">
+          <BACard
+            tone="before"
+            label='Incomplete "user reports" are common'
+            labelId="ba-before-heading"
+          >
+            <div className="rounded-xl bg-pink-soft p-6 py-8 font-mono text-[0.88rem] leading-[1.8] text-white">
+              <span className="font-bold">User report:</span>
+              <br />
+              The timings are incorrect
+            </div>
+            <ul className="ml-6 mt-4 list-disc">
+              {INCOMPLETE_ITEMS.map((item) => (
+                <li key={item} className="pl-2">
+                  {item}
+                </li>
+              ))}
+              <li className="pl-2 font-bold">
+                Not enough context for a fast and efficient triage
               </li>
-            ))}
-            <li className="pl-2 font-bold">
-              Not enough context for a fast and efficient triage
-            </li>
-          </ul>
-        </BACard>
+            </ul>
+          </BACard>
         </Reveal>
 
         <Reveal step={3}>
-        <BACard tone="before" label="Important context is often not shared" labelId="ba-missing-heading">
-          <IconList>
-            {MISSING_INFO.map((item) => (
-              <IconListItem
-                key={item.main}
-                icon={<span className="text-pink"><MinusIcon /></span>}
-              >
-                <p className="text-[1.1rem] font-bold">{item.main}</p>
-                <SubText>{item.sub}</SubText>
-              </IconListItem>
-            ))}
-          </IconList>
-        </BACard>
+          <BACard
+            tone="before"
+            label="Important context is often not shared"
+            labelId="ba-missing-heading"
+          >
+            <IconList>
+              {MISSING_INFO.map((item) => (
+                <IconListItem
+                  key={item.main}
+                  icon={
+                    <span className="text-pink">
+                      <MinusIcon />
+                    </span>
+                  }
+                >
+                  <p className="text-[1.1rem] font-bold">{item.main}</p>
+                  <SubText>{item.sub}</SubText>
+                </IconListItem>
+              ))}
+            </IconList>
+          </BACard>
         </Reveal>
       </div>
     </SlideShell>

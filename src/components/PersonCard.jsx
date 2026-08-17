@@ -17,7 +17,7 @@ const MARKER_COLOR = {
 export default function PersonCard({ name, role, accent = "teal", children }) {
   const roleColor = ROLE_COLOR[accent] ?? ROLE_COLOR.teal;
   return (
-    <article className="w-full rounded-2xl border-[1.5px] border-border bg-surface p-5">
+    <article className="w-full rounded-2xl border-[1.5px] border-border bg-surface p-5 h-full">
       <h3 className="mb-1 text-[1.05rem] font-bold text-white">{name}</h3>
       <p
         className={`mb-3 text-[0.78rem] font-semibold uppercase tracking-[0.08em] ${roleColor}`}

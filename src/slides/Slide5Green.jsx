@@ -10,7 +10,7 @@ const CARDS = [
     id: "mttr",
     accent: "green",
     icon: <TrendingUp className="text-green" />,
-    heading: "Shorter Mean Time to Repair",
+    heading: "Shorter Mean Time to Repair (SMTR)",
     body: "Faster triage → faster fix → shorter window",
     description:
       "where broken state drives user retry traffic and wasted compute.",
@@ -53,9 +53,9 @@ export default function Slide5Green() {
         is having the right context from the start
       </SlideHeading>
 
-      <div className="grid items-start gap-[18px] grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-[18px] grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {CARDS.map((c, i) => (
-          <Reveal key={c.id} step={i + 1}>
+          <Reveal key={c.id} step={i + 1} className="h-full">
             <ImpactCard
               accent={c.accent}
               icon={c.icon}

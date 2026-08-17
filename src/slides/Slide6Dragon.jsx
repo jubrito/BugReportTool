@@ -35,14 +35,22 @@ function IntakeList({ items, Icon, iconColor }) {
   );
 }
 
-function IntakePanel({ tone, title, input, italicInput, items, Icon, iconColor }) {
+function IntakePanel({
+  tone,
+  title,
+  input,
+  italicInput,
+  items,
+  Icon,
+  iconColor,
+}) {
   const borderClass =
     tone === "without" ? "border-pink-soft" : "border-teal-soft";
   const titleClass = tone === "without" ? "text-pink" : "text-teal";
   return (
     <article
       aria-labelledby={`intake-${tone}`}
-      className={`rounded-xl border-[1.5px] bg-black p-5 ${borderClass}`}
+      className={`rounded-xl border-[1.5px] bg-black p-5 ${borderClass} h-full`}
     >
       <h3
         id={`intake-${tone}`}
@@ -52,7 +60,11 @@ function IntakePanel({ tone, title, input, italicInput, items, Icon, iconColor }
       </h3>
       <p className="mb-3.5 font-mono text-[0.84rem] leading-[1.6] text-[#d1d2d3]">
         Input:{" "}
-        {italicInput ? <span className="italic">{italicInput}</span> : `"${input}"`}
+        {italicInput ? (
+          <span className="italic">{italicInput}</span>
+        ) : (
+          `"${input}"`
+        )}
       </p>
       <IntakeList items={items} Icon={Icon} iconColor={iconColor} />
     </article>
@@ -87,8 +99,8 @@ export default function Slide6Dragon() {
 
           <figure className="mb-7 border-l-[3px] border-teal pl-4">
             <blockquote className="mb-1.5 text-base italic leading-[1.55] text-text">
-              <strong>"Context engineering over prompt engineering</strong> – the
-              art of providing all the context for the task to be plausibly
+              <strong>"Context engineering over prompt engineering</strong> –
+              the art of providing all the context for the task to be plausibly
               solvable by the LLM."
             </blockquote>
             <figcaption className="text-[0.85rem] text-text-muted">
@@ -99,7 +111,7 @@ export default function Slide6Dragon() {
         </Reveal>
 
         <div className="grid items-stretch gap-5 md:grid-cols-2">
-          <Reveal step={2}>
+          <Reveal step={2} className="h-full">
             <IntakePanel
               tone="without"
               title="Without structured intake"
@@ -109,7 +121,7 @@ export default function Slide6Dragon() {
               iconColor="text-pink"
             />
           </Reveal>
-          <Reveal step={3}>
+          <Reveal step={3} className="h-full">
             <IntakePanel
               tone="with"
               title="With structured intake"

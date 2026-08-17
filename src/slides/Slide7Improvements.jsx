@@ -56,7 +56,7 @@ export default function Slide7Improvements() {
 
       <div className="grid grid-cols-1 gap-[18px] md:grid-cols-2">
         {CARDS.map((c, i) => (
-          <Reveal key={c.id} step={i + 1}>
+          <Reveal key={c.id} step={i + 1} className="h-full">
             <ImpactCard
               accent={c.accent}
               icon={c.icon}
