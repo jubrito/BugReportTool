@@ -1,6 +1,7 @@
 import SlideShell from "../components/SlideShell";
 import SlideHeading from "../components/SlideHeading";
 import Pill from "../components/Pill";
+import Reveal from "../presentation/Reveal";
 
 const PILLS = [
   { label: "On-call triage", dot: "var(--color-green)" },
@@ -22,17 +23,21 @@ export default function Slide10Closing() {
         <span className="italic text-teal-soft">by humans and AIs</span>
       </SlideHeading>
 
-      <ul className="mb-8 flex flex-wrap justify-center gap-2.5 list-none p-0 m-0">
-        {PILLS.map((p) => (
-          <li key={p.label}>
-            <Pill dotColor={p.dot}>{p.label}</Pill>
-          </li>
-        ))}
-      </ul>
+      <Reveal step={1}>
+        <ul className="mb-8 flex flex-wrap justify-center gap-2.5 list-none p-0 m-0">
+          {PILLS.map((p) => (
+            <li key={p.label}>
+              <Pill dotColor={p.dot}>{p.label}</Pill>
+            </li>
+          ))}
+        </ul>
+      </Reveal>
 
-      <p className="text-[0.85rem] text-text-muted">
-        Juliana Witzke · Fabio Pinto · Paulo Calixto
-      </p>
+      <Reveal step={2}>
+        <p className="text-[0.85rem] text-text-muted">
+          Juliana Witzke · Fabio Pinto · Paulo Calixto
+        </p>
+      </Reveal>
     </SlideShell>
   );
 }

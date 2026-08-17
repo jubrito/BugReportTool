@@ -2,6 +2,7 @@ import { Clock, FileText, Bot, Info, User } from "lucide-react";
 import SlideShell from "../components/SlideShell";
 import SlideHeading from "../components/SlideHeading";
 import Eyebrow from "../components/Eyebrow";
+import Reveal from "../presentation/Reveal";
 
 const CHIPS = [
   {
@@ -71,18 +72,20 @@ export default function Slide1Title() {
           </p>
         </div>
 
-        <ul className="col-span-full flex flex-wrap gap-2.5 list-none p-0 m-0">
-          {CHIPS.map(({ label, Icon, bg, border, text }) => (
-            <li key={label}>
-              <span
-                className={`inline-flex items-center gap-1.5 rounded-full border-[1.5px] px-4 py-1.5 text-[15px] font-semibold tracking-[0.03em] ${bg} ${border} ${text}`}
-              >
-                <Icon aria-hidden="true" className="h-5 w-5" />
-                {label}
-              </span>
-            </li>
-          ))}
-        </ul>
+        <Reveal step={1} className="col-span-full">
+          <ul className="flex flex-wrap gap-2.5 list-none p-0 m-0">
+            {CHIPS.map(({ label, Icon, bg, border, text }) => (
+              <li key={label}>
+                <span
+                  className={`inline-flex items-center gap-1.5 rounded-full border-[1.5px] px-4 py-1.5 text-[15px] font-semibold tracking-[0.03em] ${bg} ${border} ${text}`}
+                >
+                  <Icon aria-hidden="true" className="h-5 w-5" />
+                  {label}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
     </SlideShell>
   );

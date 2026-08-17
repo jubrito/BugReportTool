@@ -4,6 +4,7 @@ import SlideHeading from "../components/SlideHeading";
 import Eyebrow from "../components/Eyebrow";
 import BACard from "../components/BACard";
 import IconList, { IconListItem } from "../components/IconList";
+import Reveal from "../presentation/Reveal";
 
 const STATS_BEFORE = [
   {
@@ -139,18 +140,21 @@ export default function Slide4Impact() {
         to a more <em>efficient triage</em>
       </SlideHeading>
 
-      <div className="mb-9 grid w-full items-stretch gap-5 grid-cols-[1fr_auto_1fr]">
-        <StatsRow items={STATS_BEFORE} />
-        <span
-          aria-hidden="true"
-          className="flex items-center justify-center text-[2.5rem] font-bold text-text-muted"
-        >
-          →
-        </span>
-        <StatsRow items={STATS_AFTER} />
-      </div>
+      <Reveal step={1} className="w-full">
+        <div className="mb-9 grid w-full items-stretch gap-5 grid-cols-[1fr_auto_1fr]">
+          <StatsRow items={STATS_BEFORE} />
+          <span
+            aria-hidden="true"
+            className="flex items-center justify-center text-[2.5rem] font-bold text-text-muted"
+          >
+            →
+          </span>
+          <StatsRow items={STATS_AFTER} />
+        </div>
+      </Reveal>
 
-      <div className="grid grid-cols-2 gap-20">
+      <div className="grid grid-cols-1 gap-20 md:grid-cols-2">
+        <Reveal step={2}>
         <BACard tone="beforeTinted" label="Before" labelId="s4-before">
           <IconList>
             {BEFORE_ITEMS.map((item) => (
@@ -160,6 +164,8 @@ export default function Slide4Impact() {
             ))}
           </IconList>
         </BACard>
+        </Reveal>
+        <Reveal step={3}>
         <BACard tone="afterTinted" label="After" labelId="s4-after">
           <IconList>
             {AFTER_ITEMS.map((item) => (
@@ -169,6 +175,7 @@ export default function Slide4Impact() {
             ))}
           </IconList>
         </BACard>
+        </Reveal>
       </div>
     </SlideShell>
   );

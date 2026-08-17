@@ -3,6 +3,7 @@ import SlideShell from "../components/SlideShell";
 import SlideHeading from "../components/SlideHeading";
 import Eyebrow from "../components/Eyebrow";
 import PersonCard, { PersonBullets } from "../components/PersonCard";
+import Reveal from "../presentation/Reveal";
 
 const TEAM = [
   {
@@ -54,31 +55,34 @@ export default function Slide9Team() {
         Built <em>together</em>
       </SlideHeading>
 
-      <div className="flex flex-row gap-3.5">
-        {TEAM.map((person) => (
-          <PersonCard
-            key={person.name}
-            name={person.name}
-            role={person.role}
-            accent={person.accent}
-          >
-            <PersonBullets
-              items={person.contributions}
+      <div className="flex flex-col gap-3.5 md:flex-row">
+        {TEAM.map((person, i) => (
+          <Reveal key={person.name} step={i + 1} className="flex-1">
+            <PersonCard
+              name={person.name}
+              role={person.role}
               accent={person.accent}
-            />
-          </PersonCard>
+            >
+              <PersonBullets
+                items={person.contributions}
+                accent={person.accent}
+              />
+            </PersonCard>
+          </Reveal>
         ))}
       </div>
 
-      <ul className="mt-8 flex flex-wrap gap-2.5 list-none p-0 m-0">
-        {SUMMARY_PILLS.map((label) => (
-          <li key={label}>
-            <Pill dotColor={TEXT} borderColor={TEXT} textColor={TEXT}>
-              {label}
-            </Pill>
-          </li>
-        ))}
-      </ul>
+      <Reveal step={4}>
+        <ul className="mt-8 flex flex-wrap gap-2.5 list-none p-0 m-0">
+          {SUMMARY_PILLS.map((label) => (
+            <li key={label}>
+              <Pill dotColor={TEXT} borderColor={TEXT} textColor={TEXT}>
+                {label}
+              </Pill>
+            </li>
+          ))}
+        </ul>
+      </Reveal>
     </SlideShell>
   );
 }

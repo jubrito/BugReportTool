@@ -2,6 +2,7 @@ import SlideShell from "../components/SlideShell";
 import SlideHeading from "../components/SlideHeading";
 import Eyebrow from "../components/Eyebrow";
 import Quote from "../components/Quote";
+import Reveal from "../presentation/Reveal";
 
 const GREEN = "var(--color-green)";
 
@@ -41,30 +42,34 @@ export default function Slide8Reaction() {
         The team's <em>reaction</em>
       </SlideHeading>
 
-      <div className="flex flex-row gap-4">
-        {NAMED_QUOTES.map((q) => (
-          <Quote
-            key={q.by}
-            by={q.by}
-            className={q.className}
-            accentColor={GREEN}
-          >
-            "{q.text}"
-          </Quote>
-        ))}
-      </div>
+      <Reveal step={1}>
+        <div className="flex flex-col gap-4 md:flex-row">
+          {NAMED_QUOTES.map((q) => (
+            <Quote
+              key={q.by}
+              by={q.by}
+              className={q.className}
+              accentColor={GREEN}
+            >
+              "{q.text}"
+            </Quote>
+          ))}
+        </div>
+      </Reveal>
 
-      <div className="flex flex-row gap-4">
-        {ANON_QUOTES.map((q) => (
-          <Quote
-            key={q.text}
-            by="Anonymous (during retrospective)"
-            className={q.className}
-          >
-            "{q.text}"
-          </Quote>
-        ))}
-      </div>
+      <Reveal step={2}>
+        <div className="flex flex-col gap-4 md:flex-row">
+          {ANON_QUOTES.map((q) => (
+            <Quote
+              key={q.text}
+              by="Anonymous (during retrospective)"
+              className={q.className}
+            >
+              "{q.text}"
+            </Quote>
+          ))}
+        </div>
+      </Reveal>
     </SlideShell>
   );
 }

@@ -3,6 +3,7 @@ import SlideShell from "../components/SlideShell";
 import SlideHeading from "../components/SlideHeading";
 import Eyebrow from "../components/Eyebrow";
 import ImpactCard from "../components/ImpactCard";
+import Reveal from "../presentation/Reveal";
 
 const CARDS = [
   {
@@ -53,17 +54,18 @@ export default function Slide5Green() {
       </SlideHeading>
 
       <div className="grid items-start gap-[18px] grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-        {CARDS.map((c) => (
-          <ImpactCard
-            key={c.id}
-            accent={c.accent}
-            icon={c.icon}
-            heading={c.heading}
-            headingId={`s5-${c.id}`}
-          >
-            <span className="font-bold text-text">{c.body}</span>{" "}
-            {c.description}
-          </ImpactCard>
+        {CARDS.map((c, i) => (
+          <Reveal key={c.id} step={i + 1}>
+            <ImpactCard
+              accent={c.accent}
+              icon={c.icon}
+              heading={c.heading}
+              headingId={`s5-${c.id}`}
+            >
+              <span className="font-bold text-text">{c.body}</span>{" "}
+              {c.description}
+            </ImpactCard>
+          </Reveal>
         ))}
       </div>
     </SlideShell>

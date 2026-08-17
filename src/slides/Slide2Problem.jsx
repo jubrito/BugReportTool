@@ -3,6 +3,7 @@ import SlideHeading from "../components/SlideHeading";
 import Eyebrow from "../components/Eyebrow";
 import BACard from "../components/BACard";
 import IconList, { IconListItem, SubText } from "../components/IconList";
+import Reveal from "../presentation/Reveal";
 
 const FLOW_STEPS = [
   { label: "User reports a problem using our tool", alert: false },
@@ -62,31 +63,34 @@ export default function Slide2Problem() {
         multiple rounds of <em>back-and-forth</em>
       </SlideHeading>
 
-      <ol
-        aria-label="Report to triage flow"
-        className="my-7 flex w-full flex-wrap items-center gap-2.5 list-none p-0"
-      >
-        {FLOW_STEPS.map((step, i) => (
-          <li key={step.label} className="flex flex-1 min-w-[120px] items-center gap-2.5">
-            <div
-              className={`w-full whitespace-pre-line rounded-xl border-[1.5px] px-4 py-3.5 text-center text-[0.9rem] font-semibold ${
-                step.alert
-                  ? "border-pink-soft bg-pink-softer text-[#f7a0ae]"
-                  : "border-border bg-surface text-text"
-              }`}
-            >
-              {step.label}
-            </div>
-            {i < FLOW_STEPS.length - 1 && (
-              <span aria-hidden="true" className="shrink-0 text-[1.3rem] text-text-muted">
-                →
-              </span>
-            )}
-          </li>
-        ))}
-      </ol>
+      <Reveal step={1} as="div" className="w-full">
+        <ol
+          aria-label="Report to triage flow"
+          className="my-7 flex w-full flex-wrap items-center gap-2.5 list-none p-0"
+        >
+          {FLOW_STEPS.map((step, i) => (
+            <li key={step.label} className="flex flex-1 min-w-[120px] items-center gap-2.5">
+              <div
+                className={`w-full whitespace-pre-line rounded-xl border-[1.5px] px-4 py-3.5 text-center text-[0.9rem] font-semibold ${
+                  step.alert
+                    ? "border-pink-soft bg-pink-softer text-[#f7a0ae]"
+                    : "border-border bg-surface text-text"
+                }`}
+              >
+                {step.label}
+              </div>
+              {i < FLOW_STEPS.length - 1 && (
+                <span aria-hidden="true" className="shrink-0 text-[1.3rem] text-text-muted">
+                  →
+                </span>
+              )}
+            </li>
+          ))}
+        </ol>
+      </Reveal>
 
       <div className="mt-1 grid gap-5 grid-cols-1 md:grid-cols-[1fr_1.3fr]">
+        <Reveal step={2}>
         <BACard tone="before" label='Incomplete "user reports" are common' labelId="ba-before-heading">
           <div className="rounded-xl bg-pink-soft p-6 py-8 font-mono text-[0.88rem] leading-[1.8] text-white">
             <span className="font-bold">User report:</span>
@@ -104,7 +108,9 @@ export default function Slide2Problem() {
             </li>
           </ul>
         </BACard>
+        </Reveal>
 
+        <Reveal step={3}>
         <BACard tone="before" label="Important context is often not shared" labelId="ba-missing-heading">
           <IconList>
             {MISSING_INFO.map((item) => (
@@ -118,6 +124,7 @@ export default function Slide2Problem() {
             ))}
           </IconList>
         </BACard>
+        </Reveal>
       </div>
     </SlideShell>
   );

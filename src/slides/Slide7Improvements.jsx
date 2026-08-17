@@ -3,6 +3,7 @@ import SlideShell from "../components/SlideShell";
 import SlideHeading from "../components/SlideHeading";
 import Eyebrow from "../components/Eyebrow";
 import ImpactCard from "../components/ImpactCard";
+import Reveal from "../presentation/Reveal";
 
 const CARDS = [
   {
@@ -53,18 +54,19 @@ export default function Slide7Improvements() {
         make a <em>big difference</em>
       </SlideHeading>
 
-      <div className="grid grid-cols-2 gap-[18px]">
-        {CARDS.map((c) => (
-          <ImpactCard
-            key={c.id}
-            accent={c.accent}
-            icon={c.icon}
-            heading={c.heading}
-            headingId={`s7-${c.id}`}
-          >
-            <span className="font-bold">{c.body}</span>
-            <span className="ml-1">{c.description}</span>
-          </ImpactCard>
+      <div className="grid grid-cols-1 gap-[18px] md:grid-cols-2">
+        {CARDS.map((c, i) => (
+          <Reveal key={c.id} step={i + 1}>
+            <ImpactCard
+              accent={c.accent}
+              icon={c.icon}
+              heading={c.heading}
+              headingId={`s7-${c.id}`}
+            >
+              <span className="font-bold">{c.body}</span>
+              <span className="ml-1">{c.description}</span>
+            </ImpactCard>
+          </Reveal>
         ))}
       </div>
     </SlideShell>

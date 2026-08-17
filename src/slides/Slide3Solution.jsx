@@ -3,6 +3,7 @@ import SlideHeading from "../components/SlideHeading";
 import Eyebrow from "../components/Eyebrow";
 import CheckList, { CheckItem } from "../components/CheckList";
 import SlackMock from "../components/SlackMock";
+import Reveal from "../presentation/Reveal";
 
 const CHECK_ITEMS = [
   {
@@ -56,37 +57,43 @@ export default function Slide3Solution() {
             right below the original message.
           </p>
 
-          <CheckList>
-            {CHECK_ITEMS.map((item) => (
-              <CheckItem key={item.title} iconClass="text-green">
-                <div>
-                  <strong className="text-text">{item.title}</strong>
-                  {item.badge && (
-                    <span className="ml-1 italic text-green">
-                      ({item.badge})
-                    </span>
-                  )}
-                </div>
-                <p>{item.body}</p>
-              </CheckItem>
-            ))}
-          </CheckList>
+          <Reveal step={1}>
+            <CheckList>
+              {CHECK_ITEMS.map((item) => (
+                <CheckItem key={item.title} iconClass="text-green">
+                  <div>
+                    <strong className="text-text">{item.title}</strong>
+                    {item.badge && (
+                      <span className="ml-1 italic text-green">
+                        ({item.badge})
+                      </span>
+                    )}
+                  </div>
+                  <p>{item.body}</p>
+                </CheckItem>
+              ))}
+            </CheckList>
+          </Reveal>
 
-          <aside className="mt-5 rounded-xl border-[1.5px] border-green-soft bg-green-softer p-6 text-[0.95rem] leading-[1.6] text-text">
-            <p className="mb-2 text-[1.2rem] font-bold text-green">
-              All fields optional except "current vs. expected"
-            </p>
-            <p>
-              → No friction for quick reports, but the right prompts are
-              impossible to miss
-            </p>
-            <p className="mt-2">
-              → <strong>Users know what info is most useful to provide if they want a faster resolution.</strong>
-            </p>
-          </aside>
+          <Reveal step={2}>
+            <aside className="mt-5 rounded-xl border-[1.5px] border-green-soft bg-green-softer p-6 text-[0.95rem] leading-[1.6] text-text">
+              <p className="mb-2 text-[1.2rem] font-bold text-green">
+                All fields optional except "current vs. expected"
+              </p>
+              <p>
+                → No friction for quick reports, but the right prompts are
+                impossible to miss
+              </p>
+              <p className="mt-2">
+                → <strong>Users know what info is most useful to provide if they want a faster resolution.</strong>
+              </p>
+            </aside>
+          </Reveal>
         </div>
 
-        <SlackMock />
+        <Reveal step={3}>
+          <SlackMock />
+        </Reveal>
       </div>
     </SlideShell>
   );

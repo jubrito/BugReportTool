@@ -2,6 +2,7 @@ import { CheckCircle2, XCircle } from "lucide-react";
 import SlideShell from "../components/SlideShell";
 import SlideHeading from "../components/SlideHeading";
 import Eyebrow from "../components/Eyebrow";
+import Reveal from "../presentation/Reveal";
 
 const WITHOUT_ITEMS = [
   "AI doesn't have enough information to start to prioritize bug",
@@ -79,39 +80,45 @@ export default function Slide6Dragon() {
           can only reflect the vagueness back.
         </p>
 
-        <p className="mb-2 text-[1.2rem] font-bold uppercase tracking-[0.12em] text-teal">
-          Supporting an industry shift
-        </p>
+        <Reveal step={1}>
+          <p className="mb-2 text-[1.2rem] font-bold uppercase tracking-[0.12em] text-teal">
+            Supporting an industry shift
+          </p>
 
-        <figure className="mb-7 border-l-[3px] border-teal pl-4">
-          <blockquote className="mb-1.5 text-base italic leading-[1.55] text-text">
-            <strong>"Context engineering over prompt engineering</strong> – the
-            art of providing all the context for the task to be plausibly
-            solvable by the LLM."
-          </blockquote>
-          <figcaption className="text-[0.85rem] text-text-muted">
-            — Tobi Lütke, Shopify co-founder & CEO (June 2025). Endorsed by
-            Andrej Karpathy, co-founder of OpenAI.
-          </figcaption>
-        </figure>
+          <figure className="mb-7 border-l-[3px] border-teal pl-4">
+            <blockquote className="mb-1.5 text-base italic leading-[1.55] text-text">
+              <strong>"Context engineering over prompt engineering</strong> – the
+              art of providing all the context for the task to be plausibly
+              solvable by the LLM."
+            </blockquote>
+            <figcaption className="text-[0.85rem] text-text-muted">
+              — Tobi Lütke, Shopify co-founder & CEO (June 2025). Endorsed by
+              Andrej Karpathy, co-founder of OpenAI.
+            </figcaption>
+          </figure>
+        </Reveal>
 
         <div className="grid items-stretch gap-5 md:grid-cols-2">
-          <IntakePanel
-            tone="without"
-            title="Without structured intake"
-            input="Can't duplicate the class"
-            items={WITHOUT_ITEMS}
-            Icon={XCircle}
-            iconColor="text-pink"
-          />
-          <IntakePanel
-            tone="with"
-            title="With structured intake"
-            italicInput="<scope X, it's blocking Y, recurring, stakeholder Z etc>"
-            items={WITH_ITEMS}
-            Icon={CheckCircle2}
-            iconColor="text-teal"
-          />
+          <Reveal step={2}>
+            <IntakePanel
+              tone="without"
+              title="Without structured intake"
+              input="Can't duplicate the class"
+              items={WITHOUT_ITEMS}
+              Icon={XCircle}
+              iconColor="text-pink"
+            />
+          </Reveal>
+          <Reveal step={3}>
+            <IntakePanel
+              tone="with"
+              title="With structured intake"
+              italicInput="<scope X, it's blocking Y, recurring, stakeholder Z etc>"
+              items={WITH_ITEMS}
+              Icon={CheckCircle2}
+              iconColor="text-teal"
+            />
+          </Reveal>
         </div>
       </div>
     </SlideShell>
