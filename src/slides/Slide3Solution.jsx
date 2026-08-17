@@ -82,8 +82,11 @@ export default function Slide3Solution() {
               </p>
               <p>
                 → No friction for quick reports, but the right prompts are
-                impossible to miss. Users know what info is most useful to
-                provide if they want a faster resolution.
+                impossible to miss.
+              </p>
+              <p>
+                → Users know what info is most useful to provide if they want a
+                faster resolution.
               </p>
             </aside>
           </Reveal>
