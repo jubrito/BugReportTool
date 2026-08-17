@@ -100,7 +100,7 @@ function CheckIcon() {
 function StatCard({ value, label, color }) {
   return (
     <div
-      className={`flex flex-1 flex-col justify-center rounded-2xl border-t bg-surface-dark px-5 py-4 ${color}`}
+      className={`flex flex-auto flex-col justify-center rounded-2xl border-t bg-surface-dark px-5 py-4 ${color}`}
     >
       <p className="mb-2 text-[2.4rem] font-extrabold leading-none">{value}</p>
       <p className="whitespace-pre-line text-[0.9rem] leading-[1.45] text-text-muted">
@@ -114,7 +114,7 @@ function StatsRow({ items }) {
   return (
     <div className="flex items-stretch gap-3">
       {items.map((s, i) => (
-        <div key={s.value} className="flex flex-1 items-stretch gap-3 w-full">
+        <div key={s.value} className="flex flex-auto items-stretch gap-3">
           <StatCard {...s} />
           {i < items.length - 1 && (
             <span
