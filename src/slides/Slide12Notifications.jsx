@@ -8,113 +8,228 @@ import {
 } from "../components/SlackCard";
 import Reveal from "../presentation/Reveal";
 
-function DragonRow({ label, value, valueClass = "text-[#c0c0c0]" }) {
+function EscalationRequestLabel() {
   return (
-    <div className="flex items-baseline gap-1.5">
-      <span className="shrink-0 text-[0.8rem] text-[#888]">{label}</span>
-      <span className={`text-[0.85rem] ${valueClass}`}>{value}</span>
-    </div>
+    <span className="inline-block rounded bg-amber-softer px-1.5 py-0.5 text-sm font-bold uppercase tracking-wide text-amber">
+      Escalation Request
+    </span>
   );
 }
 
-function TicketCreatedCard() {
+function DragonEscalationPostLabel() {
   return (
-    <SlackCardShell>
-      <SlackBotHeader name="Dragon" time="11:33 AM" />
-      <div className="text-[#d1d2d3]">
-        <p className="mb-2 text-[0.9rem] font-bold text-white">
-          🎟️ Jira ticket created
-        </p>
-        <div className="rounded-lg border border-[#2f3338] bg-[#0f1316] p-3">
-          <p className="mb-2 text-[0.82rem] font-semibold leading-[1.4] text-white">
-            <span className="mr-1.5 font-bold text-teal">COSM-3585</span>
-            [BUG][PROD] Segment Control Board — empty segment list
-          </p>
-          <div className="space-y-0.5">
-            <DragonRow label="Priority:" value="High" valueClass="font-bold text-teal" />
-            <DragonRow label="Component:" value="Platform" />
-            <DragonRow label="Assigned:" value="On-Call" />
-          </div>
-        </div>
-      </div>
-    </SlackCardShell>
+    <span className="inline-block rounded bg-amber-softer px-1.5 py-0.5 text-sm font-bold uppercase tracking-wide text-amber">
+      Dragon escalation post
+    </span>
   );
 }
 
-function BugResolvedCard() {
+function SectionLabel({ children }) {
   return (
-    <SlackCardShell>
-      <SlackBotHeader name="Dragon" time="4:16 PM" />
-      <div className="text-[#d1d2d3]">
-        <p className="mb-2 text-[0.9rem] font-bold text-white">
-          ✅ COSM-3585 resolved
-        </p>
-        <div className="rounded-lg border border-[#2f3338] bg-[#0f1316] p-3">
-          <p className="mb-2 text-[0.82rem] leading-[1.4] text-[#aaa]">
-            Segment Control Board — empty segment list
-          </p>
-          <div className="space-y-0.5">
-            <DragonRow label="Status:" value="In Progress → Done" />
-            <DragonRow label="Resolved by:" value="@engineer" />
-          </div>
-          <p className="mt-2.5 text-[0.8rem] text-[#9b9da0]">
-            ✉️ Original reporter has been notified
-          </p>
-        </div>
-      </div>
-    </SlackCardShell>
+    <p className="mb-1 text-[0.68rem] font-bold uppercase tracking-[0.1em] text-[#9b9da0]">
+      {children}
+    </p>
+  );
+}
+
+function DragonHeader() {
+  return (
+    <SlackBotHeader
+      name="Dragon AI Bot"
+      time="11:33 AM"
+      src="dragon-slack-icon.jpg"
+    />
   );
 }
 
 export default function Slide12Notifications() {
   return (
-    <SlideShell ariaLabel="Dragon Slack notifications">
-      <Eyebrow>Dragon: Slack Notifications</Eyebrow>
+    <SlideShell ariaLabel="Dragon Slack notification improvements">
+      <Eyebrow>Dragon Slack Messages</Eyebrow>
       <SlideHeading accent="amber">
-        Dragon keeps everyone
+        Improving Slack notifications during
         <br />
-        <em>in the loop</em>
+        <em>bug report escalation</em>
       </SlideHeading>
 
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-[1fr_auto_1fr]">
-        <Reveal step={1}>
-          <SlackCardShell>
-            <SlackBotHeader time="11:32 AM" />
-            <div className="text-[#d1d2d3]">
-              <span className="font-bold text-green underline">Team Link</span>
-              <br />
-              <span className="font-bold text-green underline">
-                Datadog RUM Link
-              </span>
-              <br />
-              <span className="font-bold text-white">Environment:</span>{" "}
-              PRODUCTION
-              <br />
-              <span className="font-bold text-white">Path:</span> /programs
-              <br />
-              <span className="font-bold text-white">User:</span>{" "}
-              reporter@onepeloton.com
-              <br />
-              <span className="font-bold text-white">
-                Current vs. expected:
-              </span>{" "}
-              SCB shows empty list; all segments should be visible.
-              <br />
-              <span className="font-bold text-white">On Call:</span> @Juliana
-            </div>
-          </SlackCardShell>
-        </Reveal>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        {/* Thread messages column */}
+        <div className="flex flex-col gap-3">
+          <SectionLabel>
+            <EscalationRequestLabel /> Reply to Dragon AI Channel post
+          </SectionLabel>
 
-        <div className="flex items-center justify-center">
-          <SlackThreadDivider replyCount={2} />
+          {/* After thread */}
+          <Reveal step={2}>
+            <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2">
+                {/* Ack (new) */}
+                <SlackCardShell>
+                  <DragonHeader />
+                  <div className="text-[#d1d2d3]">
+                    <p className="text-white mb-2 flex items-start">
+                      <img
+                        src={`${import.meta.env.BASE_URL}dragon-fire-icon.gif`}
+                        alt=""
+                        aria-hidden="true"
+                        width={20}
+                        height={20}
+                        className="h-5 w-5 mr-1 shrink-0 rounded-md inline"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span className="font-bold text-md">
+                        Ticket creation request received! [prod]
+                      </span>
+                    </p>
+                    <ul className="list-disc flex flex-col gap-2">
+                      <li className="ml-4">
+                        <p className="text-[0.8rem]">
+                          <span className="font-semibold text-[#ececed]">
+                            Assessment:
+                          </span>{" "}
+                          <span>Bug report detected 🐛</span>
+                          <span className="block">
+                            Creating a Jira ticket with the data reported. The
+                            ticket will be shared when it's ready.
+                          </span>
+                        </p>
+                      </li>
+                      <li className="ml-4">
+                        <p className="text-[0.8rem]">
+                          <span className="font-semibold text-[#ececed]">
+                            Reasoning:
+                          </span>{" "}
+                          Studio team is blocked because users can't change ride
+                          images. When uploading an image with the correct
+                          requirements, they still encounter an error that
+                          prevents the class thumbnail upload.
+                        </p>
+                      </li>
+                      <li className="ml-4">
+                        <p className="text-[0.8rem]">
+                          <span className="font-semibold text-[#ececed]">
+                            Confidence:
+                          </span>{" "}
+                          80%
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </SlackCardShell>
+
+                <SlackThreadDivider replyCount={1} />
+
+                {/* Success reply */}
+                <SlackCardShell>
+                  <DragonHeader />
+                  <div className="text-[#d1d2d3] flex flex-col gap-1">
+                    <p className="text-white flex items-start">
+                      <img
+                        src={`${import.meta.env.BASE_URL}dragon-fire-icon.gif`}
+                        alt=""
+                        aria-hidden="true"
+                        width={20}
+                        height={20}
+                        className="h-5 w-5 mr-1 shrink-0 rounded-md inline"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span className="font-bold">
+                        Ticket creation request succeeded ✅ [prod]
+                      </span>
+                    </p>
+                    <ul className="list-disc flex flex-col gap-2">
+                      <li className="ml-4">
+                        <p className="text-[0.8rem]">
+                          New ticket:{" "}
+                          <span className="font-bold text-teal underline">
+                            JIRA-3585
+                          </span>
+                        </p>
+                      </li>
+                      <li className="ml-4">
+                        <p className="text-[0.8rem]">
+                          <span className="font-bold text-teal underline">
+                            Dragon escalation post
+                          </span>
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </SlackCardShell>
+              </div>
+            </div>
+          </Reveal>
         </div>
 
-        <div className="flex flex-col gap-3.5">
+        {/* Eng channel post column */}
+        <div className="flex flex-col gap-3">
+          <SectionLabel>
+            <DragonEscalationPostLabel /> Post to Dragon AI Channel
+          </SectionLabel>
+
+          {/* After eng post */}
           <Reveal step={2}>
-            <TicketCreatedCard />
-          </Reveal>
-          <Reveal step={3}>
-            <BugResolvedCard />
+            <div className="flex flex-col gap-2">
+              <SlackCardShell>
+                <DragonHeader />
+                <div className="text-[#d1d2d3]">
+                  <p className="mb-2 font-bold text-white flex items-start">
+                    <img
+                      src={`${import.meta.env.BASE_URL}dragon-icon.png`}
+                      alt=""
+                      aria-hidden="true"
+                      width={20}
+                      height={20}
+                      className="h-5 w-5 mr-1 shrink-0 rounded-md inline"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    New Escalation:{" "}
+                    <span className="text-teal underline">JIRA-3585</span>
+                    <span className="ml-1">[prod]</span>
+                  </p>
+                  <ul className="list-disc flex flex-col gap-2">
+                    <li className="ml-4">
+                      <p className="text-[0.82rem]">
+                        <span className="font-bold text-[#ececed]">
+                          Reporter:
+                        </span>{" "}
+                        Reporter Name (reporter@onepeloton.com)
+                      </p>
+                    </li>
+                    <li className="ml-4">
+                      <p className="text-[0.82rem]">
+                        <span className="font-bold text-[#ececed]">
+                          Dragon slack thread:
+                        </span>{" "}
+                        <span className="text-teal underline">
+                          Bug report details
+                        </span>
+                      </p>
+                    </li>
+                    <li className="ml-4">
+                      <p className="text-[0.82rem]">
+                        <span className="font-bold text-[#ececed]">
+                          AI assessment:
+                        </span>{" "}
+                        Ride details page is possibly checking the image size
+                        instead of the image requirements and throwing an error
+                        notification that don't align with the actual
+                        requirements.
+                      </p>
+                    </li>
+                    <li className="ml-4">
+                      <p className="mt-1 text-[0.78rem]">
+                        <span className="font-bold">Manually escalated </span>by
+                        @Engineer
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </SlackCardShell>
+            </div>
           </Reveal>
         </div>
       </div>
