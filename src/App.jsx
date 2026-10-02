@@ -7,6 +7,9 @@ import Slide6Dragon from "./slides/Slide6Dragon";
 import Slide7Improvements from "./slides/Slide7Improvements";
 import Slide8Reaction from "./slides/Slide8Reaction";
 import Slide9Team from "./slides/Slide9Team";
+import Slide10DragonImprovements from "./slides/Slide10DragonImprovements";
+import Slide11TicketQuality from "./slides/Slide11Loop";
+import Slide12Notifications from "./slides/Slide12Notifications";
 import Slide10Closing from "./slides/Slide10Closing";
 import {
   PresentationProvider,
@@ -26,6 +29,9 @@ const SLIDES = [
   { Component: Slide7Improvements, maxStep: 4 },
   { Component: Slide8Reaction, maxStep: 2 },
   { Component: Slide9Team, maxStep: 4 },
+  { Component: Slide10DragonImprovements, maxStep: 2 },
+  { Component: Slide11TicketQuality, maxStep: 2 },
+  { Component: Slide12Notifications, maxStep: 3 },
   { Component: Slide10Closing, maxStep: 2 },
 ];
 
