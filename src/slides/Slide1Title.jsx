@@ -45,7 +45,7 @@ const CHIPS = [
 export default function Slide1Title() {
   return (
     <SlideShell center ariaLabel="Title">
-      <div className="grid items-center justify-center gap-12 md:grid-cols-[auto_minmax(0,1fr)]">
+      <div className="grid items-center justify-center gap-8 md:grid-cols-[auto_minmax(0,1fr)]">
         <img
           src={`${import.meta.env.BASE_URL}bot.png`}
           alt=""
