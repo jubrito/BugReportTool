@@ -1,4 +1,5 @@
 import Slide1Title from "./slides/Slide1Title";
+import Slide2Overview from "./slides/Slide2Overview";
 import Slide2Problem from "./slides/Slide2Problem";
 import Slide3Solution from "./slides/Slide3Solution";
 import Slide4Impact from "./slides/Slide4Impact";
@@ -21,6 +22,7 @@ import useKeyboardControls from "./presentation/useKeyboardControls";
 
 const SLIDES = [
   { Component: Slide1Title, maxStep: 1 },
+  { Component: Slide2Overview, maxStep: 1 },
   { Component: Slide2Problem, maxStep: 3 },
   { Component: Slide3Solution, maxStep: 3 },
   { Component: Slide4Impact, maxStep: 3 },
@@ -29,7 +31,7 @@ const SLIDES = [
   { Component: Slide7Improvements, maxStep: 4 },
   { Component: Slide8Reaction, maxStep: 2 },
   { Component: Slide9Team, maxStep: 4 },
-  { Component: Slide10DragonImprovements, maxStep: 2 },
+  { Component: Slide10DragonImprovements, maxStep: 1 },
   { Component: Slide11TicketQuality, maxStep: 2 },
   { Component: Slide12Notifications, maxStep: 3 },
   { Component: Slide10Closing, maxStep: 2 },

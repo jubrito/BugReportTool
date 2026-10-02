@@ -10,11 +10,15 @@ export function SlackCardShell({ children, className = "" }) {
   );
 }
 
-export function SlackBotHeader({ name = "Team Slack bot", time }) {
+export function SlackBotHeader({
+  name = "Team Slack bot",
+  time,
+  src = "leto.png",
+}) {
   return (
     <div className="mb-3 flex items-center gap-2">
       <img
-        src={`${import.meta.env.BASE_URL}leto.png`}
+        src={`${import.meta.env.BASE_URL}${src}`}
         alt=""
         aria-hidden="true"
         width={28}
@@ -25,7 +29,10 @@ export function SlackBotHeader({ name = "Team Slack bot", time }) {
       />
       <span className="text-[0.9rem] font-bold text-white">{name}</span>
       {time && (
-        <time dateTime={time} className="text-[0.72rem] font-normal text-[#9b9da0]">
+        <time
+          dateTime={time}
+          className="text-[0.72rem] font-normal text-[#9b9da0]"
+        >
           {time}
         </time>
       )}
