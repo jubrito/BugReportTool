@@ -6,7 +6,7 @@ import SlideShell from "../components/SlideShell";
 export default function Slide2Overview() {
   return (
     <SlideShell center ariaLabel="Solution overview">
-      <div className="grid items-center justify-between gap-8 md:grid-cols-[580px_auto_1fr]">
+      <div className="grid w-full items-center gap-8 md:grid-cols-[auto_auto_1fr]">
         <div className="text-left">
           <Eyebrow>UX IMPROVEMENT</Eyebrow>
           <SlideHeading as="h1" accent="teal">

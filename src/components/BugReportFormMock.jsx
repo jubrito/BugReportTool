@@ -9,7 +9,7 @@ const NORMAL_DATA = {
   hasWorkaround: "Yes",
   workarounds: "Re-importing the class plan",
   stakeholders: ["Studio", "Media Streaming"],
-  recurrence: "First time for me",
+  recurrence: "Has happened occasionally",
   additionalDetails:
     "Started after the latest deploy. Steps to reproduce: class library → open SCB.",
 };
@@ -249,7 +249,7 @@ function HintIcon({ title }) {
           >
             {title}
           </span>,
-          document.body
+          document.body,
         )}
     </span>
   );
