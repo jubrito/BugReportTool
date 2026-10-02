@@ -104,7 +104,7 @@ const UNSELECTED_STYLE = {
 };
 
 // MUI ToggleButton – used for wrapping option groups (stakeholders, impact scope, recurrence)
-function ToggleChip({ label, selected, weight, onClick }) {
+function ToggleChip({ label, selected, weight, onClick, isFirst, isLast }) {
   const style = selected
     ? weight
       ? (WEIGHT_SELECTED_STYLE[weight] ?? SELECTED_STYLE)
@@ -120,7 +120,9 @@ function ToggleChip({ label, selected, weight, onClick }) {
         lineHeight: 1.75,
         fontWeight: selected ? 500 : 400,
         border: `1px solid ${style.borderColor}`,
-        borderRadius: 4,
+        borderLeft: isFirst ? `1px solid ${style.borderColor}` : "none",
+        borderRadius: isFirst ? "4px 0 0 4px" : isLast ? "0 4px 4px 0" : 0,
+        boxShadow: !isLast ? "inset -1px 0 0 0 rgba(0,0,0,0.12)" : "none",
         color: style.color,
         backgroundColor: style.backgroundColor,
         cursor: "pointer",
@@ -180,10 +182,13 @@ function ToggleGroup({ options, value, onChange, labelFn, thin }) {
 function HintIcon({ title }) {
   return (
     <span
+      className="hint-icon-wrapper"
       style={{
         position: "relative",
         display: "inline-flex",
         verticalAlign: "middle",
+        // override any parent pointerEvents:none (e.g. inside a label)
+        pointerEvents: "auto",
       }}
     >
       <span
@@ -214,7 +219,7 @@ function HintIcon({ title }) {
           bottom: "calc(100% + 6px)",
           left: "50%",
           transform: "translateX(-50%)",
-          width: 200,
+          width: 220,
           padding: "6px 10px",
           borderRadius: 4,
           backgroundColor: "rgba(97,97,97,0.92)",
@@ -232,8 +237,8 @@ function HintIcon({ title }) {
         {title}
       </span>
       <style>{`
-        span:focus .hint-tooltip,
-        span:hover .hint-tooltip { opacity: 1 !important; }
+        .hint-icon-wrapper:hover .hint-tooltip,
+        .hint-icon-wrapper:focus-within .hint-tooltip { opacity: 1 !important; }
       `}</style>
     </span>
   );
@@ -458,7 +463,7 @@ function BugReportFormOriginalMock() {
   return (
     <div
       style={{
-        width: "570px",
+        width: "100%",
         overflow: "hidden",
         borderRadius: 4,
         backgroundColor: "#fff",
@@ -699,7 +704,7 @@ export default function BugReportFormMock({
               <span style={{ fontSize: "0.875rem" }}>?</span>
             </div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 0 }}>
-              {IMPACT_SCOPE_OPTIONS.map((opt) => (
+              {IMPACT_SCOPE_OPTIONS.map((opt, i) => (
                 <ToggleChip
                   key={opt}
                   label={opt}
@@ -708,6 +713,8 @@ export default function BugReportFormMock({
                   onClick={() =>
                     setImpactScope((prev) => (prev === opt ? "" : opt))
                   }
+                  isFirst={i === 0}
+                  isLast={i === IMPACT_SCOPE_OPTIONS.length - 1}
                 />
               ))}
             </div>
@@ -733,23 +740,18 @@ export default function BugReportFormMock({
               }}
             >
               <div style={{ display: "flex", flexWrap: "wrap", gap: 0 }}>
-                {["Yes", "No"].map((opt) => (
+                {["Yes", "No"].map((opt, i) => (
                   <ToggleChip
                     key={opt}
                     label={opt}
                     selected={hasWorkaround === opt}
                     onClick={() => setHasWorkaround(opt)}
                     weight={WORKAROUND_WEIGHTS[opt]}
+                    isFirst={i === 0}
+                    isLast={i === 1}
                   />
                 ))}
               </div>
-              {/* 
-              <ToggleGroup
-                options={["Yes", "No"]}
-                value={hasWorkaround}
-                onChange={setHasWorkaround}
-                weight={WORKAROUND_WEIGHTS[hasWorkaround]}
-              /> */}
               {hasWorkaround === "Yes" && (
                 <input
                   type="text"
@@ -785,12 +787,14 @@ export default function BugReportFormMock({
               Primary stakeholders
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 0 }}>
-              {STAKEHOLDER_OPTIONS.map((opt) => (
+              {STAKEHOLDER_OPTIONS.map((opt, i) => (
                 <ToggleChip
                   key={opt}
                   label={opt}
                   selected={stakeholders.includes(opt)}
                   onClick={() => toggleStakeholder(opt)}
+                  isFirst={i === 0}
+                  isLast={i === STAKEHOLDER_OPTIONS.length - 1}
                 />
               ))}
             </div>
@@ -829,7 +833,7 @@ export default function BugReportFormMock({
               Issue recurrence
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 0 }}>
-              {RECURRENCE_OPTIONS.map((opt) => (
+              {RECURRENCE_OPTIONS.map((opt, i) => (
                 <ToggleChip
                   key={opt}
                   label={opt}
@@ -838,6 +842,8 @@ export default function BugReportFormMock({
                   onClick={() =>
                     setRecurrence((prev) => (prev === opt ? "" : opt))
                   }
+                  isFirst={i === 0}
+                  isLast={i === RECURRENCE_OPTIONS.length - 1}
                 />
               ))}
             </div>
