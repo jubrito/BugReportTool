@@ -8,7 +8,7 @@ import Slide6Dragon from "./slides/Slide6Dragon";
 import Slide7Improvements from "./slides/Slide7Improvements";
 import Slide8Reaction from "./slides/Slide8Reaction";
 import Slide9Team from "./slides/Slide9Team";
-import Slide10DragonImprovements from "./slides/Slide10DragonImprovements";
+import Slide10DryRun from "./slides/Slide10DryRun";
 import Slide11TicketQuality from "./slides/Slide11Loop";
 import Slide12Notifications from "./slides/Slide12Notifications";
 import Slide10Closing from "./slides/Slide10Closing";
@@ -31,7 +31,7 @@ const SLIDES = [
   { Component: Slide7Improvements, maxStep: 4 },
   { Component: Slide8Reaction, maxStep: 2 },
   { Component: Slide9Team, maxStep: 4 },
-  { Component: Slide10DragonImprovements, maxStep: 1 },
+  { Component: Slide10DryRun, maxStep: 1 },
   { Component: Slide11TicketQuality, maxStep: 2 },
   { Component: Slide12Notifications, maxStep: 3 },
   { Component: Slide10Closing, maxStep: 2 },
@@ -84,7 +84,9 @@ function AppShell() {
       <PresentationControls />
       {!isPresenting && (
         <p className="fixed bottom-4 left-4 z-40 hidden text-xs text-text-muted md:block">
-          Press <kbd className="rounded border border-border px-1.5 py-0.5">P</kbd> to present
+          Press{" "}
+          <kbd className="rounded border border-border px-1.5 py-0.5">P</kbd> to
+          present
         </p>
       )}
     </>
@@ -93,10 +95,7 @@ function AppShell() {
 
 export default function App() {
   return (
-    <PresentationProvider
-      totalSlides={SLIDES.length}
-      stepCounts={STEP_COUNTS}
-    >
+    <PresentationProvider totalSlides={SLIDES.length} stepCounts={STEP_COUNTS}>
       <AppShell />
     </PresentationProvider>
   );
