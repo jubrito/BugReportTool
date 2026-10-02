@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 const NORMAL_DATA = {
   currentVsExpected:
@@ -178,22 +179,36 @@ function ToggleGroup({ options, value, onChange, labelFn, thin }) {
   );
 }
 
-// Blue info tooltip icon matching CosmosToolTip
+// Blue info tooltip icon matching CosmosToolTip.
+// Uses a portal so the tooltip renders at document root, escaping any overflow:hidden container.
 function HintIcon({ title }) {
+  const iconRef = useRef(null);
+  const [tooltipPos, setTooltipPos] = useState(null);
+
+  const show = () => {
+    if (!iconRef.current) return;
+    const r = iconRef.current.getBoundingClientRect();
+    setTooltipPos({ x: r.left + r.width / 2, y: r.bottom + 8 });
+  };
+  const hide = () => setTooltipPos(null);
+
   return (
     <span
-      className="hint-icon-wrapper"
       style={{
-        position: "relative",
         display: "inline-flex",
         verticalAlign: "middle",
-        // override any parent pointerEvents:none (e.g. inside a label)
         pointerEvents: "auto",
+        flexShrink: 0,
       }}
     >
       <span
+        ref={iconRef}
         tabIndex={0}
         aria-label={title}
+        onMouseEnter={show}
+        onMouseLeave={hide}
+        onFocus={show}
+        onBlur={hide}
         style={{
           display: "inline-flex",
           alignItems: "center",
@@ -206,40 +221,36 @@ function HintIcon({ title }) {
           fontSize: "0.6rem",
           fontWeight: 700,
           cursor: "help",
-          flexShrink: 0,
           lineHeight: 1,
         }}
       >
         ?
       </span>
-      <span
-        role="tooltip"
-        style={{
-          position: "absolute",
-          bottom: "calc(100% + 6px)",
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: 220,
-          padding: "6px 10px",
-          borderRadius: 4,
-          backgroundColor: "rgba(97,97,97,0.92)",
-          color: "#fff",
-          fontSize: "0.7rem",
-          lineHeight: 1.4,
-          pointerEvents: "none",
-          opacity: 0,
-          transition: "opacity 0.15s",
-          zIndex: 10,
-          whiteSpace: "normal",
-        }}
-        className="hint-tooltip"
-      >
-        {title}
-      </span>
-      <style>{`
-        .hint-icon-wrapper:hover .hint-tooltip,
-        .hint-icon-wrapper:focus-within .hint-tooltip { opacity: 1 !important; }
-      `}</style>
+      {tooltipPos &&
+        createPortal(
+          <span
+            role="tooltip"
+            style={{
+              position: "fixed",
+              top: tooltipPos.y,
+              left: tooltipPos.x,
+              transform: "translateX(-50%)",
+              width: 220,
+              padding: "6px 10px",
+              borderRadius: 4,
+              backgroundColor: "rgba(97,97,97,0.92)",
+              color: "#fff",
+              fontSize: "0.7rem",
+              lineHeight: 1.4,
+              pointerEvents: "none",
+              zIndex: 9999,
+              whiteSpace: "normal",
+            }}
+          >
+            {title}
+          </span>,
+          document.body
+        )}
     </span>
   );
 }
